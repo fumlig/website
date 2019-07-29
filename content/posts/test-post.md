@@ -6,4 +6,4 @@ draft: false
 
 # Test title
 
-Test text
+Test text.
