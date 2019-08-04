@@ -1,0 +1,11 @@
+<head>
+    <meta charset="utf-8" />
+    <title>
+        {{ if .IsHome }}
+        {{- .Site.Title -}}
+        {{ else }}
+        {{- .Title }} - {{ .Site.Title -}}
+        {{ end }}
+    </title>
+    <link rel="stylesheet" type="text/css" href="{{ .Site.BaseURL }}css/style.css">
+</head>
