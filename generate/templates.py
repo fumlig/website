@@ -1,5 +1,5 @@
 import jinja2
 
-env = jinja2.Environment(
-    loader=jinja2.PackageLoader("website")
-)
+
+def find_templates(dir):
+    """Find templates recursively"""
