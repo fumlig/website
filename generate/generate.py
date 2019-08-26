@@ -30,7 +30,9 @@ def generate(path, filters=None, tests=None, globals=None, policies=None):
     if policies:
         env.globals.update(policies)
 
-    # compile templates
-    env.compile_templates(
-        target=os.path.join(path, "public")
+    # render templates
+    template = env.get_template("base.html")
+    render = template.render(
+        stylesheets=["style1.css", "style2.css"]
     )
+    print(render)
