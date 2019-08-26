@@ -1,22 +1,56 @@
 <!doctype html>
 <html lang="en">
 
+
 <head>
+    {% block head %}
+
     <meta charset="utf-8">
     <meta name="description" content="{{  }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>
-    {% if subtitle is not defined %}
-        {{ title }}
-    {% else %}
-        {{ subtitle }} - {{ title }}
-    {% endif %}
+    {% block title %}
+    oskarlundin.com
+    {% endblock %}
     </title>
+    
     {% for stylesheet in stylesheets %}
     <link rel="stylesheet" type="text/css" href="{{ stylesheet }}">
     {% endfor %}
+
+    {% endblock %}
 </head>
 
+
 <body>
+    {% block body %}
+
+    <header>
+        {% block header %}
+        <a href="/">oskarlundin.com</a>
+        <nav>
+            <a href="/">home</a>
+            <a href="/posts/">posts</a>
+            <a href="/about/">about</a>
+        </nav>
+        {% endblock %}
+    </header>
+
+    <main>
+        {% block main %}
+    
+        {% endblock %}
+    </main>
+
+    <footer>
+        {% block footer %}
+        © Copyright 2019 Oskar Lundin
+        {% endblock %}
+    </footer>
+
+    {% endblock %}
+</body>
+
 
 </html>
