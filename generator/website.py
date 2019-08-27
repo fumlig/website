@@ -1,4 +1,5 @@
 import os
+import shutil
 import jinja2
 
 
@@ -23,7 +24,7 @@ class Website:
 
 
     def create(self):
-        """Create website directories and files."""
+        """Create website."""
         if not os.path.exists(self.path):
             os.makedirs(self.path)
         if not os.path.exists(self.content_path):
@@ -38,4 +39,21 @@ class Website:
 
     def generate(self):
         """Generate website."""
+        # delete old
+        for item in os.listdir(self.generated_path):
+            path = os.path.join(self.generated_path, item)
+            if os.path.isdir(path):
+                shutil.rmtree(path)
+            else:
+                os.remove(path)
+
+        # copy static
+        for item in os.listdir(self.static_path):
+            src = os.path.join(self.static_path, item)
+            dst = os.path.join(self.generated_path, item)
+            if os.path.isdir(src):
+                shutil.copytree(src, dst, symlinks=True, ignore=None)
+            else:
+                shutil.copy2(src, dst)
         
+        # generate content
