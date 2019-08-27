@@ -24,6 +24,7 @@ class Website:
             ),
             autoescape=jinja2.select_autoescape(["html", "xml"])
         )
+        self.env.filters.update()
         self.md = markdown.Markdown(extensions=["codehilite", "full_yaml_metadata"])
 
 
@@ -105,27 +106,19 @@ class Website:
 
     def generate_pages(self):
         """Render templates with content."""
-        # populate contents dict with all pages
-        contents = {}
+        # populate lists dict
+        lists = {}
         for page in self.pages():
-            sub_contents = contents
-
-            for sub_dir in page.url.split(os.sep):
-                if not sub_dir: 
-                    continue
-                if not sub_dir in sub_contents:
-                    sub_contents[sub_dir] = {}
-
-                if sub_dir == os.path.basename(os.path.normpath(page.url)):
-                    # end reached
-                    sub_contents[sub_dir].update(page.data())
-                else:
-                    # more sub directories
-                    sub_contents = sub_contents[sub_dir]
+            if not page.meta or not "lists" in page.meta:
+                continue
+            for l in page.meta["lists"]:
+                if not l in lists:
+                    lists[l] = []
+                lists[l].append(page.data())
         
         # render pages
         for page in self.pages():
-            render = page.template.render(page=page.data(), contents=contents)
+            render = page.template.render(page=page.data(), lists=lists)
             # write page to file
             dir_path = self.generated_path if page.url == '/' else os.path.join(self.generated_path, page.url[1:])
             file_path = os.path.join(dir_path, "index.html")
@@ -133,4 +126,3 @@ class Website:
                 os.makedirs(dir_path)
             with open(file_path, 'w') as f:
                 f.write(render)
-            

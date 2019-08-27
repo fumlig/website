@@ -13,5 +13,5 @@ class Page:
         return {
             "url": self.url,
             "content": self.content,
-            "meta": self.meta
+            **self.meta
         }

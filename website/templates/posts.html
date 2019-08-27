@@ -6,13 +6,13 @@
 {% endblock %}
 
 
-{% block stylesheets %}
-<link rel="stylesheet" type="text/css" href="/css/codehilite.css">
-{% endblock %}
-
-
 {% block main %}
-<article>
+<section>
     {{ page.content|safe }}
-</article>
+    <ol>
+    {% for post in lists.posts|sort(attribute="title") %}
+    <li>{{ post.title }}</li>
+    {% endfor %}
+    </ol>
+</section>
 {% endblock %}

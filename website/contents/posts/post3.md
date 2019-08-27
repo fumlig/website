@@ -3,6 +3,8 @@ title: Post 3
 author: Oskar Lundin
 categories:
   - category1
+lists:
+  - posts
 ---
 
 # Post 3

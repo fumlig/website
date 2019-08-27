@@ -4,7 +4,9 @@ author: Oskar Lundin
 categories:
   - category1
   - category2
-  - category3 
+  - category3
+lists:
+  - posts
 ---
 
 # Post 1
