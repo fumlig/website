@@ -2,13 +2,12 @@
 
 
 {% block title %}
-{{ page.title }} - oskarlundin.com
+oskarlundin.com
 {% endblock %}
 
 
 {% block main %}
 <section>
-    <p>{{ page.title }}</p>
-    {{ page.content}}
+    {{ page.content|safe }}
 </section>
 {% endblock %}
