@@ -53,7 +53,7 @@ class Website:
                 if not url.endswith('/'):
                     url += '/'
                 # parse content and meta data
-                with open(content_file, 'r', encoding="utf-8") as f:
+                with open(content_file, 'r') as f:
                     content = self.md.convert(f.read())
                     meta = self.md.Meta
                 # get template
@@ -128,10 +128,9 @@ class Website:
             render = page.template.render(page=page.data(), contents=contents)
             # write page to file
             dir_path = self.generated_path if page.url == '/' else os.path.join(self.generated_path, page.url[1:])
-            print(dir_path)
             file_path = os.path.join(dir_path, "index.html")
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path)
-            with open(file_path, 'w', encoding="utf-8") as f:
+            with open(file_path, 'w') as f:
                 f.write(render)
             
