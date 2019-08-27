@@ -5,3 +5,4 @@ class Config:
     STATIC_DIR = "static"
     TEMPLATES_DIR = "templates"
     GENERATED_DIR = "generated"
+    
