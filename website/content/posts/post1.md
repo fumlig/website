@@ -1,3 +1,12 @@
+---
+title: Post 1
+author: Oskar Lundin
+categories:
+  - category1
+  - category2
+  - category3 
+---
+
 # Post 1
 
 This is a test markdown file.
