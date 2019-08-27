@@ -11,7 +11,11 @@
 
     <title>
     {% block title %}
+    {% if not page.title %}
     oskarlundin.com
+    {% else %}
+    {{ page.title }} - oskarlundin.com
+    {% endif %}
     {% endblock %}
     </title>
     
