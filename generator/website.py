@@ -39,7 +39,7 @@ class Website:
 
     def generate(self):
         """Generate website."""
-        # delete old
+        # delete old files
         for item in os.listdir(self.generated_path):
             path = os.path.join(self.generated_path, item)
             if os.path.isdir(path):
@@ -47,7 +47,14 @@ class Website:
             else:
                 os.remove(path)
 
-        # copy static
+        # generate new files
+        self.generate_static()
+        self.generate_content()
+
+    
+    def generate_static(self):
+        """Generate static."""
+        # copy files from static path to generated path
         for item in os.listdir(self.static_path):
             src = os.path.join(self.static_path, item)
             dst = os.path.join(self.generated_path, item)
@@ -55,5 +62,42 @@ class Website:
                 shutil.copytree(src, dst, symlinks=True, ignore=None)
             else:
                 shutil.copy2(src, dst)
-        
-        # generate content
+
+
+    def generate_content(self):
+        """Generate content."""
+        # generate a page for each content markdown
+        for root, dirs, files in os.walk(self.content_path):
+            for f in files:
+                path = os.path.join(root, f)
+                relpath = os.path.relpath(path, self.content_path)
+                dirname = os.path.dirname(relpath)
+                pre, ext = os.path.splitext(relpath)
+                # ignore if not markdown
+                if not ext == ".md":
+                    continue
+                # paths for potential templates
+                specific_tmpl = os.path.join(self.templates_path, pre + ".html")
+                default_tmpl = os.path.join(self.templates_path, dirname, "default.html")
+                # decide which template to use
+                if os.path.exists(specific_tmpl):
+                    # use specific template
+                    self.generate_page(path, specific_tmpl)
+                    pass
+                elif os.path.exists(default_tmpl):
+                    # use default tempate
+                    self.generate_page(path, default_tmpl)
+                    pass
+                else:
+                    # no template found
+                    print("No template found for " + path + ", ignoring")
+    
+
+    def generate_page(self, content_path, template_path):
+        """Generate a page."""
+        print("Generating " + content_path + " with " + template_path + ".")
+
+
+    def parse_content(self):
+        """Parse content file to dictionary usable in templates."""
+        pass

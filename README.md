@@ -1,3 +1,7 @@
 # oskarlundin.com
 
-Render with `python3 -m generate website`.
+## Generator
+
+`python3 -m generator [website] create`
+
+`python3 -m generator [website] generate`

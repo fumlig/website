@@ -30,7 +30,7 @@ def create(args):
 
 
 def generate(args):
-    print("Generating website" + args.path)
+    print("Generating website " + args.path)
     website = generator.Website(args.path, generator.Config())
     website.generate()
 
