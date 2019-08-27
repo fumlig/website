@@ -10,3 +10,15 @@ body {
 h1, h2, h3 {
     line-height: 1.2
 }
+
+header {
+    border-bottom: 1px solid #444;
+}
+
+footer {
+    border-top: 1px solid #444;
+}
+
+nav {
+    float: right;
+}
