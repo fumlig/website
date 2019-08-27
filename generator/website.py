@@ -3,6 +3,8 @@ import shutil
 import jinja2
 import markdown
 
+import generator
+
 
 class Website:
     """Website class."""
@@ -24,7 +26,40 @@ class Website:
         )
         self.md = markdown.Markdown(extensions=["codehilite", "full_yaml_metadata"])
 
-        self.content = {}
+
+    def pages(self):
+        """Website pages"""
+        # generate a page for each content markdown
+        for root, dirs, files in os.walk(self.content_path):
+            for f in files:
+                path = os.path.join(root, f)
+                url, ext = os.path.splitext(os.path.relpath(path, self.content_path))
+                # ignore if not markdown
+                if not ext == ".md":
+                    continue
+                # store paths to content and template
+                content_file = path
+                template_file = os.path.join(self.templates_path, url + ".html")
+                if not os.path.exists(template_file):
+                    template_file = os.path.join(os.path.split(template_file)[0], "default.html")
+                    if not os.path.exists(template_file):
+                        print("No template found for " + content_file)
+                        continue
+                # clean up url
+                if url.endswith("index"):
+                    url = url[:-len("index")]
+                if not url.startswith('/'):
+                    url = '/' + url
+                if not url.endswith('/'):
+                    url += '/'
+                # parse content and meta data
+                with open(content_file, 'r') as f:
+                    content = self.md.convert(f.read())
+                    meta = self.md.Meta
+                # get template
+                template = self.env.get_template(os.path.relpath(template_file, self.templates_path))
+                # clean up content_file and template_file
+                yield generator.Page(url, content, meta, template)
 
 
     def create(self):
@@ -51,13 +86,12 @@ class Website:
             else:
                 os.remove(path)
 
-        # create data
-        self.copy_static()
-        self.store_content()
-        self.render_templates()
+        # create new files
+        self.generate_static()
+        self.generate_pages()
 
     
-    def copy_static(self):
+    def generate_static(self):
         """Copy static files to generate directory."""
         # copy files from static path to generated path
         for item in os.listdir(self.static_path):
@@ -69,65 +103,8 @@ class Website:
                 shutil.copy2(src, dst)
 
 
-    def store_content(self):
-        """Store content before rendering."""
-        # generate a page for each content markdown
-        for root, dirs, files in os.walk(self.content_path):
-            for f in files:
-                path = os.path.join(root, f)
-                url, ext = os.path.splitext(os.path.relpath(path, self.content_path))
-                # ignore if not markdown
-                if not ext == ".md":
-                    continue
-                # clean up url
-                if url.endswith("index"):
-                    url = url[:-len("index")]
-                if not url.startswith('/'):
-                    url = '/' + url
-                if not url.endswith('/'):
-                    url += '/'
-
-                # create page content
-                with open(path, 'r') as f:
-                    self.content[url] = {
-                        "html": self.md.convert(f.read()),
-                        "meta": self.md.Meta
-                    }
-        print(self.content)
-
-
-    def generate_page(self, content_file, template_file, generate_path=None):
-        """Generate a page."""
-        print("Generating " + content_file + " with " + template_file + ".")
-        content = {}
-        # parse markdown
-        with open(content_file, 'r') as f:
-            content["contents"] = self.md.convert(f.read())
-            content["meta"] = self.md.Meta
-        
-        # render template
-        template = self.env.get_template(os.path.relpath(template_file, self.templates_path))
-        render = template.render(content=content)
-
-        print(render)
-    
-
-    def render_templates(self):
+    def generate_pages(self):
         """Render templates with content."""
-        pass
-            
-        """
-        # paths for potential templates
-        specific_tmpl = os.path.join(self.templates_path, pre + ".html")
-        default_tmpl = os.path.join(self.templates_path, dirname, "default.html")
-        # decide which template to use
-        if os.path.exists(specific_tmpl):
-            # use specific template
-            self.generate_page(path, specific_tmpl)
-        elif os.path.exists(default_tmpl):
-            # use default tempate
-            self.generate_page(path, default_tmpl)
-        else:
-            # no template found
-            print("No template found for " + path + ", ignoring")
-        """
+        content = {}
+        for page in self.pages():
+            pass

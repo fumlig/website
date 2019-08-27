@@ -1,2 +1,3 @@
-from generator.website import *
-from generator.config import *
+from .website import *
+from .config import *
+from .page import *
