@@ -53,7 +53,7 @@ class Website:
                 if not url.endswith('/'):
                     url += '/'
                 # parse content and meta data
-                with open(content_file, 'r') as f:
+                with open(content_file, 'r', encoding="utf-8") as f:
                     content = self.md.convert(f.read())
                     meta = self.md.Meta
                 # get template
@@ -105,6 +105,33 @@ class Website:
 
     def generate_pages(self):
         """Render templates with content."""
-        content = {}
+        # populate contents dict with all pages
+        contents = {}
         for page in self.pages():
-            pass
+            sub_contents = contents
+
+            for sub_dir in page.url.split(os.sep):
+                if not sub_dir: 
+                    continue
+                if not sub_dir in sub_contents:
+                    sub_contents[sub_dir] = {}
+
+                if sub_dir == os.path.basename(os.path.normpath(page.url)):
+                    # end reached
+                    sub_contents[sub_dir].update(page.data())
+                else:
+                    # more sub directories
+                    sub_contents = sub_contents[sub_dir]
+        
+        # render pages
+        for page in self.pages():
+            render = page.template.render(page=page.data(), contents=contents)
+            # write page to file
+            dir_path = self.generated_path if page.url == '/' else os.path.join(self.generated_path, page.url[1:])
+            print(dir_path)
+            file_path = os.path.join(dir_path, "index.html")
+            if not os.path.exists(dir_path):
+                os.makedirs(dir_path)
+            with open(file_path, 'w', encoding="utf-8") as f:
+                f.write(render)
+            
