@@ -9,12 +9,19 @@ import generator
 class Website:
     """Website class."""
 
-    def __init__(self, path, config):
+    def __init__(
+        self, 
+        path, 
+        content_path=None, 
+        generated_path=None, 
+        static_path=None, 
+        templates_path=None
+    ):
         self.path = path
-        self.content_path = os.path.join(self.path, config.CONTENT_DIR)
-        self.generated_path = os.path.join(self.path, config.GENERATED_DIR)
-        self.static_path = os.path.join(self.path, config.STATIC_DIR)
-        self.templates_path = os.path.join(self.path, config.TEMPLATES_DIR)
+        self.content_path = os.path.join(path, "content") if not content_path else content_path
+        self.generated_path = os.path.join(path, "generated") if not generated_path else generated_path
+        self.static_path = os.path.join(path, "static") if not static_path else static_path
+        self.templates_path = os.path.join(path, "templates") if not templates_path else templates_path
 
         self.env = jinja2.Environment(
             loader=jinja2.FileSystemLoader(
