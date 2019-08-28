@@ -4,20 +4,16 @@
 }
 
 .post-title {
-    margin: 0;
+    margin-block-end: 0.5em;
 }
 
-.post-date {
-    margin: 0;
-}
-
-.post-tags {
+.post-meta {
     margin: 0;
 }
 
 .post-lead {
-    margin-block-start: 0.5em;
-    margin-block-end: 1.0em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
 }
 
 .post-content {
