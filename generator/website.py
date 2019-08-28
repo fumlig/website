@@ -50,7 +50,12 @@ class Website:
                 "toc",
                 # third party
                 "full_yaml_metadata"
-            ]
+            ],
+            extension_configs={
+                "codehilite": {
+                    "linenums": True
+                }
+            }
         )
 
 

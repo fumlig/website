@@ -1,0 +1,20 @@
+.post {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+}
+
+.post-title {
+    margin: 0;
+}
+
+.post-date {
+    margin: 0;
+}
+
+.post-tags {
+    margin: 0;
+}
+
+.post-lead {
+    margin: 0;
+}
