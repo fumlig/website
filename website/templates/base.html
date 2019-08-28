@@ -3,69 +3,58 @@
 
 
 <head>
-    {% block head %}
-
-    <meta charset="utf-8">
-    <meta name="description" content="...">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>
-    {% block title %}
-    {% if not page.title %}
-    oskarlundin.com
-    {% else %}
-    {{ page.title }} - oskarlundin.com
-    {% endif %}
-    {% endblock %}
-    </title>
-    
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    {% block stylesheets %}
-    {% endblock %}
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145117300-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-145117300-1');
-    </script>
-
-    {% endblock %}
+{%- block head %}
+<meta charset="utf-8">
+<meta name="description" content="...">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+{%- block title %}
+{% if page.title %}{{ page.title }} - {% endif %}oskarlundin.com
+{% endblock -%}</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+{%- block stylesheets %}
+{% endblock -%}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145117300-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-145117300-1');
+</script>
+{% endblock -%}
 </head>
 
 
 <body>
-    {% block body %}
+{%- block body %}
 
-    <header>
-        {% block header %}
-        <a href="/">oskarlundin.com</a>
-        <nav>
-            <a href="/">home</a>
-            <a href="/posts/">posts</a>
-            <a href="/about/">about</a>
-        </nav>
-        {% endblock %}
-    </header>
+<header>
+{%- block header %}
+<a href="/">oskarlundin.com</a>
+<nav>
+<a href="/">home</a>
+<a href="/posts/">posts</a>
+<a href="/about/">about</a>
+</nav>
+{% endblock -%}
+</header>
 
-    <main>
-        {% block main %}
-    
-        {% endblock %}
-    </main>
+<main>
+{%- block main %}
 
-    <footer>
-        {% block footer %}
-        <a href="https://git.oskarlundin.com">git</a> - <a href="https://files.oskarlundin.com">files</a> - <a href="mailto:c.oskar.lundin@gmail.com">mail</a>
-        <br>
-        © Copyright 2019 Oskar Lundin
-        {% endblock %}
-    </footer>
+{% endblock -%}
+</main>
 
-    {% endblock %}
+<footer>
+{%- block footer %}
+<a href="https://git.oskarlundin.com">git</a> - <a href="https://files.oskarlundin.com">files</a> - <a href="mailto:c.oskar.lundin@gmail.com">mail</a>
+<br>
+© Copyright 2019 Oskar Lundin
+{% endblock -%}
+</footer>
+
+{% endblock -%}
 </body>
 
 
