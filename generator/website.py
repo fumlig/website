@@ -53,7 +53,7 @@ class Website:
             ],
             extension_configs={
                 "codehilite": {
-                    "linenums": True
+                    "linenums": None
                 },
                 "toc": {
                     "title": "Contents",

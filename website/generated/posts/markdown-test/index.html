@@ -12,6 +12,8 @@ Markdown Test :: oskarlundin.com
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 <link rel="stylesheet" type="text/css" href="/css/post.css">
 <link rel="stylesheet" type="text/css" href="/css/codehilite.css">
+<link rel="stylesheet" type="text/css" href="/css/codehilite-syntax.css">
+<link rel="stylesheet" type="text/css" href="/css/footnote.css">
 <link rel="stylesheet" type="text/css" href="/css/admonition.css">
 <link rel="stylesheet" type="text/css" href="/css/toc.css">
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -39,6 +41,7 @@ gtag('config', 'UA-145117300-1');
 <main>
 <article>
 <h1>Markdown Test</h1>
+<p>A test of all markdown features.</p>
 <div class="toc"><span class="toctitle">Contents</span><ul>
 <li><a href="#extensions">Extensions</a><ul>
 <li><a href="#official">Official</a><ul>
@@ -77,37 +80,33 @@ the family Rosaceae.</dd>
 </dl>
 <h4 id="fenced-code-blocks">Fenced Code Blocks<a class="headerlink" href="#fenced-code-blocks" title="Permanent link">&para;</a></h4>
 <p>This is a paragraph introducing:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">a</span> <span class="n">one</span><span class="o">-</span><span class="n">line</span> <span class="n">code</span> <span class="n">block</span>
+<div class="codehilite"><pre><span></span><span class="n">a</span> <span class="n">one</span><span class="o">-</span><span class="n">line</span> <span class="n">code</span> <span class="n">block</span>
 </pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># python code</span>
+
+<div class="codehilite"><pre><span></span><span class="c1"># python code</span>
 </pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>HTML Document<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>HTML Document<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># more python code</span>
+
+<div class="codehilite"><pre><span></span><span class="c1"># more python code</span>
 </pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="hll"><span class="c1"># This line is emphasized</span>
+
+<div class="codehilite"><pre><span></span><span class="hll"><span class="c1"># This line is emphasized</span>
 </span><span class="c1"># This line isn&#39;t</span>
 <span class="hll"><span class="c1"># This line is emphasized</span>
 </span></pre></div>
-</td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="hll"><span class="c1"># This line is emphasized</span>
+
+<div class="codehilite"><pre><span></span><span class="hll"><span class="c1"># This line is emphasized</span>
 </span><span class="c1"># This line isn&#39;t</span>
 <span class="hll"><span class="c1"># This line is emphasized</span>
 </span></pre></div>
-</td></tr></table>
+
 
 <h4 id="footnotes">Footnotes<a class="headerlink" href="#footnotes" title="Permanent link">&para;</a></h4>
 <p>Footnotes<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> have a label<sup id="fnref:@#$%"><a class="footnote-ref" href="#fn:@#$%">2</a></sup> and the footnote's content.</p>
@@ -161,13 +160,7 @@ the family Rosaceae.</dd>
 </td></tr></table>
 
 <p>Colons</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># Code goes here ...</span>
+<div class="codehilite"><pre><span></span><span class="c1"># Code goes here ...</span>
 
 
 <span class="p">:::</span><span class="n">python</span> <span class="n">hl_lines</span><span class="o">=</span><span class="s2">&quot;1 3&quot;</span>
@@ -175,12 +168,12 @@ the family Rosaceae.</dd>
 <span class="c1"># This line isn&#39;t</span>
 <span class="c1"># This line is emphasized</span>
 </pre></div>
-</td></tr></table>
+
 
 <p>When No Language is Defined</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">#</span> <span class="n">Code</span> <span class="n">goes</span> <span class="n">here</span> <span class="p">...</span>
+<div class="codehilite"><pre><span></span><span class="o">#</span> <span class="n">Code</span> <span class="n">goes</span> <span class="n">here</span> <span class="p">...</span>
 </pre></div>
-</td></tr></table>
+
 
 <h4 id="sane-lists">Sane Lists<a class="headerlink" href="#sane-lists" title="Permanent link">&para;</a></h4>
 <ol>
@@ -202,9 +195,9 @@ the family Rosaceae.</dd>
 <p>A blockquote with
 multiple lines.</p>
 </blockquote>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">a</span> <span class="n">code</span> <span class="n">block</span>
+<div class="codehilite"><pre><span></span><span class="n">a</span> <span class="n">code</span> <span class="n">block</span>
 </pre></div>
-</td></tr></table>
+
 
 <p>A final paragraph.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
