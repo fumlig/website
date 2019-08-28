@@ -54,6 +54,10 @@ class Website:
             extension_configs={
                 "codehilite": {
                     "linenums": True
+                },
+                "toc": {
+                    "title": "Contents",
+                    "permalink": True
                 }
             }
         )

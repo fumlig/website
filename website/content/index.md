@@ -1,6 +1,6 @@
 ---
-title: home
+title: Home
 visible_posts: 3
 ---
 
-# Home
+Home page.

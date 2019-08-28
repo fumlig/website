@@ -16,5 +16,6 @@
 }
 
 .post-lead {
-    margin: 0;
+    margin-block-start: 0.5em;
+    margin-block-end: 1.0em;
 }

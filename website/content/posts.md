@@ -1,5 +1,5 @@
 ---
-title: posts
+title: Posts
 ---
 
-# Posts
+Posts page.

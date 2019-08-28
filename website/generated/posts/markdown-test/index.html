@@ -7,12 +7,13 @@
 <meta name="description" content="...">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-Markdown Test - oskarlundin.com
+Markdown Test :: oskarlundin.com
 </title>
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 <link rel="stylesheet" type="text/css" href="/css/post.css">
 <link rel="stylesheet" type="text/css" href="/css/codehilite.css">
 <link rel="stylesheet" type="text/css" href="/css/admonition.css">
+<link rel="stylesheet" type="text/css" href="/css/toc.css">
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145117300-1"></script>
 <script>
@@ -29,24 +30,44 @@ gtag('config', 'UA-145117300-1');
 <header>
 <a href="/">oskarlundin.com</a>
 <nav>
-<a href="/">home</a>
-<a href="/posts/">posts</a>
+<a href="/">home</a> ::
+<a href="/posts/">posts</a> ::
 <a href="/about/">about</a>
 </nav>
 </header>
 
 <main>
 <article>
-<h1 id="markdown-test">Markdown Test</h1>
-<p>This is a test markdown page.</p>
-<h2 id="extensions">Extensions</h2>
+<h1>Markdown Test</h1>
+<div class="toc"><span class="toctitle">Contents</span><ul>
+<li><a href="#extensions">Extensions</a><ul>
+<li><a href="#official">Official</a><ul>
+<li><a href="#abbreviations">Abbreviations</a></li>
+<li><a href="#definition-lists">Definition Lists</a></li>
+<li><a href="#fenced-code-blocks">Fenced Code Blocks</a></li>
+<li><a href="#footnotes">Footnotes</a></li>
+<li><a href="#tables">Tables</a></li>
+<li><a href="#admonition">Admonition</a></li>
+<li><a href="#codehilite">Codehilite</a></li>
+<li><a href="#sane-lists">Sane Lists</a></li>
+</ul>
+</li>
+<li><a href="#third-party">Third Party</a><ul>
+<li><a href="#yaml-metadata-extension">YAML metadata extension</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="extensions">Extensions<a class="headerlink" href="#extensions" title="Permanent link">&para;</a></h2>
 <p>Tests of extensions for <a href="https://python-markdown.github.io/">Python-Markdown</a>.</p>
-<h3 id="official">Official</h3>
+<h3 id="official">Official<a class="headerlink" href="#official" title="Permanent link">&para;</a></h3>
 <p>Tests of <a href="https://python-markdown.github.io/extensions/#officially-supported-extensions">official extensions</a>.</p>
-<h4 id="abbreviations">Abbreviations</h4>
+<h4 id="abbreviations">Abbreviations<a class="headerlink" href="#abbreviations" title="Permanent link">&para;</a></h4>
 <p>The <abbr title="Hyper Text Markup Language">HTML</abbr> specification
 is maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.</p>
-<h4 id="definition-lists">Definition Lists</h4>
+<h4 id="definition-lists">Definition Lists<a class="headerlink" href="#definition-lists" title="Permanent link">&para;</a></h4>
 <dl>
 <dt>Apple</dt>
 <dd>Pomaceous fruit of plants of the genus Malus in
@@ -54,7 +75,7 @@ the family Rosaceae.</dd>
 <dt>Orange</dt>
 <dd>The fruit of an evergreen tree of the genus Citrus.</dd>
 </dl>
-<h4 id="fenced-code-blocks">Fenced Code Blocks</h4>
+<h4 id="fenced-code-blocks">Fenced Code Blocks<a class="headerlink" href="#fenced-code-blocks" title="Permanent link">&para;</a></h4>
 <p>This is a paragraph introducing:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">a</span> <span class="n">one</span><span class="o">-</span><span class="n">line</span> <span class="n">code</span> <span class="n">block</span>
 </pre></div>
@@ -88,9 +109,9 @@ the family Rosaceae.</dd>
 </span></pre></div>
 </td></tr></table>
 
-<h4 id="footnotes">Footnotes</h4>
+<h4 id="footnotes">Footnotes<a class="headerlink" href="#footnotes" title="Permanent link">&para;</a></h4>
 <p>Footnotes<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> have a label<sup id="fnref:@#$%"><a class="footnote-ref" href="#fn:@#$%">2</a></sup> and the footnote's content.</p>
-<h4 id="tables">Tables</h4>
+<h4 id="tables">Tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -109,7 +130,7 @@ the family Rosaceae.</dd>
 </tr>
 </tbody>
 </table>
-<h4 id="admonition">Admonition</h4>
+<h4 id="admonition">Admonition<a class="headerlink" href="#admonition" title="Permanent link">&para;</a></h4>
 <div class="admonition type">
 <p class="admonition-title">optional explicit title within double quotes</p>
 <p>Any number of other indented markdown elements.</p>
@@ -126,7 +147,7 @@ the family Rosaceae.</dd>
 <div class="admonition important">
 <p>This is an admonition box without a title.</p>
 </div>
-<h4 id="codehilite">Codehilite</h4>
+<h4 id="codehilite">Codehilite<a class="headerlink" href="#codehilite" title="Permanent link">&para;</a></h4>
 <p>Shebang (with path)</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/python</span>
@@ -161,42 +182,15 @@ the family Rosaceae.</dd>
 </pre></div>
 </td></tr></table>
 
-<h4 id="sane-lists">Sane Lists</h4>
+<h4 id="sane-lists">Sane Lists<a class="headerlink" href="#sane-lists" title="Permanent link">&para;</a></h4>
 <ol>
 <li>Apples</li>
 <li>Oranges</li>
 <li>Pears</li>
 </ol>
-<h4 id="table-of-contents">Table of Contents</h4>
-<div class="toc">
-<ul>
-<li><a href="#markdown-test">Markdown Test</a><ul>
-<li><a href="#extensions">Extensions</a><ul>
-<li><a href="#official">Official</a><ul>
-<li><a href="#abbreviations">Abbreviations</a></li>
-<li><a href="#definition-lists">Definition Lists</a></li>
-<li><a href="#fenced-code-blocks">Fenced Code Blocks</a></li>
-<li><a href="#footnotes">Footnotes</a></li>
-<li><a href="#tables">Tables</a></li>
-<li><a href="#admonition">Admonition</a></li>
-<li><a href="#codehilite">Codehilite</a></li>
-<li><a href="#sane-lists">Sane Lists</a></li>
-<li><a href="#table-of-contents">Table of Contents</a></li>
-</ul>
-</li>
-<li><a href="#third-party">Third Party</a><ul>
-<li><a href="#yaml-metadata-extension">YAML metadata extension</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<h3 id="third-party">Third Party</h3>
+<h3 id="third-party">Third Party<a class="headerlink" href="#third-party" title="Permanent link">&para;</a></h3>
 <p>Tests of <a href="hhttps://python-markdown.github.io/extensions/#third-party-extensions">third party extensions</a>.</p>
-<h4 id="yaml-metadata-extension">YAML metadata extension</h4>
+<h4 id="yaml-metadata-extension">YAML metadata extension<a class="headerlink" href="#yaml-metadata-extension" title="Permanent link">&para;</a></h4>
 <p><a href="https://github.com/sivakov512/python-markdown-full-yaml-metadata">GitHub</a></p>
 <div class="footnote">
 <hr />
@@ -223,7 +217,9 @@ multiple lines.</p>
 </main>
 
 <footer>
-<a href="https://git.oskarlundin.com">git</a> - <a href="https://files.oskarlundin.com">files</a> - <a href="mailto:c.oskar.lundin@gmail.com">mail</a>
+<a href="https://git.oskarlundin.com">git</a> ::
+<a href="https://files.oskarlundin.com">files</a> ::
+<a href="mailto:c.oskar.lundin@gmail.com">mail</a>
 <br>
 © Copyright 2019 Oskar Lundin
 </footer>

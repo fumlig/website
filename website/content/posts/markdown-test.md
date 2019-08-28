@@ -11,10 +11,7 @@ lists:
 draft: false
 ---
 
-
-# Markdown Test
-
-This is a test markdown page.
+[TOC]
 
 ## Extensions
 
@@ -145,10 +142,6 @@ When No Language is Defined
 1. Apples
 2. Oranges
 3. Pears
-
-#### Table of Contents
-
-[TOC]
 
 ### Third Party
 

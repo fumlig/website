@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
 {%- block title %}
-{% if page.title %}{{ page.title }} - {% endif %}oskarlundin.com
+{% if page.title %}{{ page.title }} :: {% endif %}oskarlundin.com
 {% endblock -%}</title>
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 {%- block stylesheets %}
@@ -33,8 +33,8 @@ gtag('config', 'UA-145117300-1');
 {%- block header %}
 <a href="/">oskarlundin.com</a>
 <nav>
-<a href="/">home</a>
-<a href="/posts/">posts</a>
+<a href="/">home</a> ::
+<a href="/posts/">posts</a> ::
 <a href="/about/">about</a>
 </nav>
 {% endblock -%}
@@ -48,7 +48,9 @@ gtag('config', 'UA-145117300-1');
 
 <footer>
 {%- block footer %}
-<a href="https://git.oskarlundin.com">git</a> - <a href="https://files.oskarlundin.com">files</a> - <a href="mailto:c.oskar.lundin@gmail.com">mail</a>
+<a href="https://git.oskarlundin.com">git</a> ::
+<a href="https://files.oskarlundin.com">files</a> ::
+<a href="mailto:c.oskar.lundin@gmail.com">mail</a>
 <br>
 © Copyright 2019 Oskar Lundin
 {% endblock -%}
