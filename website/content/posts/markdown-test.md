@@ -1,19 +1,18 @@
 ---
-title: Post 1
-lead: Post 1 lead.
+title: Markdown Test
+lead: A test of all markdown features.
 author: Oskar Lundin
 date: 27-08-2019
+modified: 28-08-2019
 tags:
-  - tag1
-  - tag2
-  - tag3
+  - markdown
 lists:
   - posts
 draft: false
 ---
 
 
-# Post 1
+# Markdown Test
 
 This is a test markdown file.
 
@@ -139,9 +138,9 @@ When No Language is Defined
 
 #### Sane Lists
 
-4. Apples
-5. Oranges
-6. Pears
+1. Apples
+2. Oranges
+3. Pears
 
 #### Table of Contents
 

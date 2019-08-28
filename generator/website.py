@@ -15,13 +15,16 @@ class Website:
         content_path=None, 
         generated_path=None, 
         static_path=None, 
-        templates_path=None
+        templates_path=None,
+        drafts_enabled=False
     ):
         self.path = path
         self.content_path = os.path.join(path, "content") if not content_path else content_path
         self.generated_path = os.path.join(path, "generated") if not generated_path else generated_path
         self.static_path = os.path.join(path, "static") if not static_path else static_path
         self.templates_path = os.path.join(path, "templates") if not templates_path else templates_path
+
+        self.drafts_enabled = drafts_enabled
 
         self.env = jinja2.Environment(
             loader=jinja2.FileSystemLoader(
@@ -81,9 +84,12 @@ class Website:
                     content = self.md.convert(f.read())
                     meta = self.md.Meta
                     self.md.reset()
+                # ignore if draft and drafts not enabled
+                if not self.drafts_enabled and meta.get("draft"):
+                    continue
                 # get template
                 template = self.env.get_template(os.path.relpath(template_file, self.templates_path))
-                # clean up content_file and template_file
+
                 yield generator.Page(url, content, meta, template)
 
 
