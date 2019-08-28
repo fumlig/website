@@ -1,11 +1,13 @@
 ---
 title: Post 2
+lead: Post 2 lead.
 author: Oskar Lundin
-categories:
-  - category1
-  - category2
+date: 15-07-2019
+tags:
+  - tag2
 lists:
   - posts
+draft: true
 ---
 
 # Post 2
@@ -24,17 +26,15 @@ List test:
 
 ### Code
 
-    Code test:
-    
-    #/usr/bin/env python3
-    
-    def main():
-        print("Hello, world!")
-    
-    if __name__ == "__main__":
-        main()
+```cpp
+#include <iostream>
 
+int main(int argc, char argv[])
+{
+  std::cout << "Hello, world!" << std::endl;
+}
+```
 
-## Misc.
+## Misc
 
 Nothing yet.

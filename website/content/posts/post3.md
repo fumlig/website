@@ -1,10 +1,13 @@
 ---
 title: Post 3
+lead: Post 3 lead.
 author: Oskar Lundin
-categories:
-  - category1
+date: 20-08-2019
+tags:
+  - tag1
 lists:
   - posts
+draft: true
 ---
 
 # Post 3

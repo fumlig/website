@@ -31,8 +31,24 @@ class Website:
             ),
             autoescape=jinja2.select_autoescape(["html", "xml"])
         )
-        self.env.filters.update()
-        self.md = markdown.Markdown(extensions=["codehilite", "full_yaml_metadata"])
+
+        self.md = markdown.Markdown(
+            # https://python-markdown.github.io/extensions/
+            extensions=[
+                # official
+                "abbr",
+                "def_list",
+                "fenced_code",
+                "footnotes",
+                "tables",
+                "admonition",
+                "codehilite",
+                "sane_lists",
+                "toc",
+                # third party
+                "full_yaml_metadata"
+            ]
+        )
 
 
     def pages(self):

@@ -1,0 +1,21 @@
+.admonition {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px dotted #444;
+}
+
+.admonition-title {
+    font-weight: bold;
+}
+
+.admonition.note {
+    background-color: #66CDAA;
+}
+
+.admonition.danger {
+    background-color: #F08080;
+}
+
+.admonition.important {
+    background-color: #EEE8AA;
+}
