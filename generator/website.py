@@ -80,6 +80,7 @@ class Website:
                 with open(content_file, 'r') as f:
                     content = self.md.convert(f.read())
                     meta = self.md.Meta
+                    self.md.reset()
                 # get template
                 template = self.env.get_template(os.path.relpath(template_file, self.templates_path))
                 # clean up content_file and template_file
