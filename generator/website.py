@@ -48,8 +48,10 @@ class Website:
                 "codehilite",
                 "sane_lists",
                 "toc",
+                "attr_list",
                 # third party
-                "full_yaml_metadata"
+                "full_yaml_metadata",
+                "markdown_captions"
             ],
             extension_configs={
                 "codehilite": {

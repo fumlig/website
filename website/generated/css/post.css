@@ -19,3 +19,29 @@
     margin-block-start: 0.5em;
     margin-block-end: 1.0em;
 }
+
+.post-content {
+
+}
+
+.post-content figure {
+    text-align: center;
+}
+
+.post-content figure img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.post-content figure figcaption {
+    font-style: italic;
+}
+
+.post-content hr {
+    border-top: 1px dotted #444;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+}
