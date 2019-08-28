@@ -14,11 +14,15 @@ draft: false
 
 # Markdown Test
 
-This is a test markdown file.
+This is a test markdown page.
 
 ## Extensions
 
+Tests of extensions for [Python-Markdown](https://python-markdown.github.io/).
+
 ### Official
+
+Tests of [official extensions](https://python-markdown.github.io/extensions/#officially-supported-extensions).
 
 #### Abbreviations
 
@@ -147,6 +151,8 @@ When No Language is Defined
 [TOC]
 
 ### Third Party
+
+Tests of [third party extensions](hhttps://python-markdown.github.io/extensions/#third-party-extensions).
 
 #### YAML metadata extension
 
