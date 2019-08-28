@@ -44,7 +44,7 @@ Numbered list:
 
 An [example](http://example.com)
 
-![Stanford Bunny](http://graphics.stanford.edu/data/3Dscanrep/stanford-bunny-cebal-ssh.jpg "Stanford Bunny")
+![Stanford Bunny](/images/stanford-bunny.jpg "Stanford Bunny")
 
 > Markdown uses email-style > characters for blockquoting.
 
