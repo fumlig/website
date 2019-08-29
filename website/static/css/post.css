@@ -4,20 +4,18 @@
 }
 
 .post-title {
+    margin-block-start: 1em;
     margin-block-end: 0.5em;
 }
 
 .post-meta {
-    margin: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 .post-lead {
-    margin-block-start: 1em;
+    margin-block-start: 0.5em;
     margin-block-end: 1em;
-}
-
-.post-content {
-
 }
 
 .post-content figure {
