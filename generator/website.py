@@ -59,7 +59,7 @@ class Website:
                 },
                 "toc": {
                     "title": "Contents",
-                    "permalink": True
+                    "permalink": False
                 }
             }
         )
