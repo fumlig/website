@@ -71,22 +71,7 @@ class Website:
         for root, dirs, files in os.walk(self.content_path):
             for f in files:
                 content_file = os.path.join(root, f)
-                template_file = os.path.join(
-                    self.templates_path, 
-                    os.path.splitext(
-                        os.path.relpath(content_file, self.content_path)
-                    )[0] + ".html")
-                if not os.path.exists(template_file):
-                    template_file = os.path.join(os.path.split(template_file)[0], "default.html")
-                    if not os.path.exists(template_file):
-                        print("No template found for " + content_file)
-                        continue
-
-                page = generator.Page(self, content_file, template_file)
-
-                if not self.drafts_enabled and page.data["draft"]:
-                    continue
-
+                page = generator.Page(self, content_file)
                 yield page
 
 
@@ -104,9 +89,8 @@ class Website:
             os.makedirs(self.templates_path)
 
 
-    def generate(self):
-        """Generate website."""
-        # delete old files
+    def clean(self):
+        """Clear generated path."""
         for item in os.listdir(self.generated_path):
             path = os.path.join(self.generated_path, item)
             if os.path.isdir(path):
@@ -114,7 +98,10 @@ class Website:
             else:
                 os.remove(path)
 
-        # create new files
+
+    def generate(self):
+        """Generate website."""
+        self.clean()
         self.generate_static()
         self.generate_pages()
 
@@ -133,19 +120,41 @@ class Website:
 
     def generate_pages(self):
         """Render templates with content."""
-        # populate lists dict
-        lists = {}
+        # store groups
+        groups = {}
         for page in self.pages():
-            for l in page.data["lists"]:
-                if not l in lists:
-                    lists[l] = []
-                lists[l].append(page.data)
-        
+            # ignore drafts
+            if not self.drafts_enabled and page.draft:
+                continue
+            for g in page.groups:
+                if not g in groups:
+                    groups[g] = []
+                groups[g].append(page)
+
         # render pages
         for page in self.pages():
-            render = page.template.render(page=page.data, lists=lists)
-            # write page to file
-            dir_path = self.generated_path if page.data["url"] == '/' else os.path.join(self.generated_path, page.data["url"][1:])
+            # ignore drafts
+            if not self.drafts_enabled and page.draft:
+                continue
+            # determine template file
+            template_file_candidates = filter(
+                os.path.exists, 
+                [
+                    # specific
+                    os.path.join(self.templates_path, os.path.relpath(page.content_file, self.content_path) + ".html"),
+                    # default
+                    os.path.join(self.templates_path, os.path.dirname(os.path.relpath(page.content_file, self.content_path)), "default.html")
+                    # TODO: default, parent directory
+                ]
+            )
+            template_file = next(template_file_candidates, None)
+            if not template_file:
+                print("no template file found for page " + page.url)
+                continue
+            # render page
+            template = self.env.get_template(os.path.relpath(template_file, self.templates_path))
+            render = template.render(page=page, groups=groups)
+            dir_path = os.path.join(self.generated_path, page.url[1:])
             file_path = os.path.join(dir_path, "index.html")
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path)

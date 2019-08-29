@@ -5,7 +5,7 @@ author: Oskar Lundin
 created: 2019-08-28
 tags:
   - c++
-lists:
+groups:
   - posts
 draft: true
 ---

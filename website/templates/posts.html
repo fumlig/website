@@ -12,7 +12,7 @@
 
 <section>
 <h2>All posts</h2>
-{% for post in lists.posts|sort(attribute="created", reverse=True) %}
+{% for post in groups.posts|sort(attribute="created", reverse=True) %}
 {% include "post-preview.html" %}
 {% endfor %}
 </section>

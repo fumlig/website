@@ -12,7 +12,7 @@
 
 <section>
 <h2>Recent posts</h2>
-{% for post in (lists.posts|sort(attribute="created", reverse=True))[:page.visible_posts] %}
+{% for post in (groups.posts|sort(attribute="created", reverse=True))[:page.visible_posts] %}
 {% include "post-preview.html" %}
 {% endfor %}
 </section>

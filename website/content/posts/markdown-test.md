@@ -5,7 +5,7 @@ author: Oskar Lundin
 created: 2019-08-27
 tags:
   - markdown
-lists:
+groups:
   - posts
 draft: false
 ---
