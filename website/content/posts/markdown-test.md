@@ -1,13 +1,14 @@
 ---
 title: Markdown Test
-lead: A test of all markdown features.
-author: Oskar Lundin
 created: 2019-08-27
-tags:
-  - markdown
 groups:
   - posts
 draft: false
+
+lead: A test of all markdown features.
+author: Oskar Lundin
+tags:
+  - markdown
 ---
 
 [TOC]

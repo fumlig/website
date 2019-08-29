@@ -1,13 +1,14 @@
 ---
 title: Faster C++ I/O for Competitive Programming
-lead: Some tricks for faster C++ input and output.
-author: Oskar Lundin
 created: 2019-08-28
-tags:
-  - c++
 groups:
   - posts
 draft: true
+
+lead: Some tricks for faster C++ input and output.
+author: Oskar Lundin
+tags:
+  - c++
 ---
 
 A header file with faster I/O for C++.

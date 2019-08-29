@@ -7,6 +7,5 @@
 ## To Do
 
 - More meta data
-- Tags as lists for filtering
-- Search lists
+- Search groups
 - requirements.txt or corresponding

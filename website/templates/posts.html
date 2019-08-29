@@ -2,6 +2,11 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" type="text/css" href="/css/post.css">
+<link rel="stylesheet" type="text/css" href="/css/posts.css">
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/search.js"></script>
 {% endblock %}
 
 {% block main %}
@@ -12,8 +17,14 @@
 
 <section>
 <h2>All posts</h2>
+
+<input type="text" id="search-posts" onkeyup="search()" placeholder="Filter...">
+
+<div id="posts">
 {% for post in groups.posts|sort(attribute="created", reverse=True) %}
 {% include "post-preview.html" %}
 {% endfor %}
+</div>
+
 </section>
 {% endblock %}
