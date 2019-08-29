@@ -44,7 +44,11 @@ Numbered list:
 
 An [example](http://example.com)
 
+Image:
+
 ![Stanford Bunny](/images/stanford-bunny.jpg "Stanford Bunny")
+
+Padding text.
 
 > Markdown uses email-style > characters for blockquoting.
 
