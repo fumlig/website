@@ -14,8 +14,8 @@
 <h1 class="post-title">{{ page.title }}</h1>
 <p class="post-meta">Created: <time>{{ page.created }}</time></p>
 <p class="post-meta">Modified: <time>{{ page.modified }}</time></p>
-<p class="post-meta">Tags: {% for tag in page.tags %}{{ tag }}{{ ", " if not loop.last }}{% endfor %}</p>
-<p class="post-lead">{{ page.lead }}</p>
+<p class="post-meta">Tags: {% for tag in page.meta.tags %}{{ tag }}{{ ", " if not loop.last }}{% endfor %}</p>
+<p class="post-lead">{{ page.meta.lead }}</p>
 <div class="post-content">{{ page.content|safe }}</div>
 </article>
 {% endblock %}

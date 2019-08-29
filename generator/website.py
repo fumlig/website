@@ -141,7 +141,7 @@ class Website:
                 os.path.exists, 
                 [
                     # specific
-                    os.path.join(self.templates_path, os.path.relpath(page.content_file, self.content_path) + ".html"),
+                    os.path.join(self.templates_path, os.path.splitext(os.path.relpath((page.content_file), self.content_path))[0] + ".html"),
                     # default
                     os.path.join(self.templates_path, os.path.dirname(os.path.relpath(page.content_file, self.content_path)), "default.html")
                     # TODO: default, parent directory
@@ -151,6 +151,7 @@ class Website:
             if not template_file:
                 print("no template file found for page " + page.url)
                 continue
+            
             # render page
             template = self.env.get_template(os.path.relpath(template_file, self.templates_path))
             render = template.render(page=page, groups=groups)
