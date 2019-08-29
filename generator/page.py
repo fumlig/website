@@ -41,11 +41,11 @@ class Page:
             self.data["title"] = title
         if not "created" in self.data:
             c_unixtime = os.path.getctime(content_file)
-            c_datetime = datetime.datetime.fromtimestamp(c_unixtime)
+            c_datetime = datetime.date.fromtimestamp(c_unixtime)
             self.data["created"] = c_datetime
         if not "modified" in self.data:
             m_unixtime = os.path.getmtime(content_file)
-            m_datetime = datetime.datetime.fromtimestamp(m_unixtime)
+            m_datetime = datetime.date.fromtimestamp(m_unixtime)
             self.data["modified"] = m_datetime
         if not "draft" in self.data:
             self.data["draft"] = False
