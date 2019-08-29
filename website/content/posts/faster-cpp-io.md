@@ -9,6 +9,7 @@ lead: Some tricks for faster C++ input and output.
 author: Oskar Lundin
 tags:
   - c++
+  - test tag
 ---
 
 A header file with faster I/O for C++.

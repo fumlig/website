@@ -11,6 +11,7 @@
 Posts :: oskarlundin.com
 </title>
 <link rel="stylesheet" type="text/css" href="/css/main.css">
+<link rel="stylesheet" type="text/css" href="/css/content.css">
 <link rel="stylesheet" type="text/css" href="/css/post.css">
 <link rel="stylesheet" type="text/css" href="/css/posts.css">
 
@@ -47,15 +48,22 @@ gtag('config', 'UA-145117300-1');
 <h2>All posts</h2>
 
 <input type="text" id="search-posts" onkeyup="search()" placeholder="Filter...">
+<p>
+<a href="#" onclick="searchFor(this.innerText)">markdown</a> :: 
+
+<a href="#" onclick="searchFor(this.innerText)">test tag</a> :: 
+
+<a href="#" onclick="searchFor(this.innerText)">c++</a>
+</p>
 
 <div id="posts">
 
 <article class=post>
 
 <h3 class="post-title"><a href="/posts/faster-cpp-io/">Faster C++ I/O for Competitive Programming</a></h3>
-<p class="post-meta">Created: <time>2019-08-28</time></p>
-<p class="post-meta">Modified: <time>2019-08-30</time></p>
-<p class="post-meta">Tags: c++</p>
+<p class="post-created">Created: <time>2019-08-28</time></p>
+<p class="post-modified">Modified: <time>2019-08-30</time></p>
+<p class="post-tags">Tags: c++, test tag</p>
 <p class="post-lead">Some tricks for faster C++ input and output.</p>
 
 </article>
@@ -63,9 +71,9 @@ gtag('config', 'UA-145117300-1');
 <article class=post>
 
 <h3 class="post-title"><a href="/posts/markdown-test/">Markdown Test</a></h3>
-<p class="post-meta">Created: <time>2019-08-27</time></p>
-<p class="post-meta">Modified: <time>2019-08-30</time></p>
-<p class="post-meta">Tags: markdown</p>
+<p class="post-created">Created: <time>2019-08-27</time></p>
+<p class="post-modified">Modified: <time>2019-08-30</time></p>
+<p class="post-tags">Tags: markdown, test tag</p>
 <p class="post-lead">A test of all markdown features.</p>
 
 </article>

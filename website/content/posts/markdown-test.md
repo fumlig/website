@@ -9,6 +9,7 @@ lead: A test of all markdown features.
 author: Oskar Lundin
 tags:
   - markdown
+  - test tag
 ---
 
 [TOC]

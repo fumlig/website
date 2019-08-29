@@ -8,7 +8,7 @@
     margin-block-end: 0.5em;
 }
 
-.post-meta {
+.post-created, .post-modified, .post-tags {
     margin-block-start: 0;
     margin-block-end: 0;
 }

@@ -7,5 +7,5 @@
 ## To Do
 
 - More meta data
-- Search groups
 - requirements.txt or corresponding
+- Some form of global config
