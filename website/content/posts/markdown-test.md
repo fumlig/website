@@ -2,8 +2,7 @@
 title: Markdown Test
 lead: A test of all markdown features.
 author: Oskar Lundin
-date: 27-08-2019
-modified: 28-08-2019
+created: 2019-08-27
 tags:
   - markdown
 lists:
@@ -23,7 +22,7 @@ by a blank line.
 Two spaces at the end of a line  
 produces a line break.
 
-Text attributes _italic_, 
+Text attributes _italic_,
 **bold**, `monospace`.
 
 Horizontal rule:

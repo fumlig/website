@@ -70,38 +70,19 @@ class Website:
         # generate a page for each content markdown
         for root, dirs, files in os.walk(self.content_path):
             for f in files:
-                path = os.path.join(root, f)
-                url, ext = os.path.splitext(os.path.relpath(path, self.content_path))
-                # ignore if not markdown
-                if not ext == ".md":
-                    continue
-                # store paths to content and template
-                content_file = path
-                template_file = os.path.join(self.templates_path, url + ".html")
+                content_file = os.path.join(root, f)
+                template_file = os.path.join(
+                    self.templates_path, 
+                    os.path.splitext(
+                        os.path.relpath(content_file, self.content_path)
+                    )[0] + ".html")
                 if not os.path.exists(template_file):
                     template_file = os.path.join(os.path.split(template_file)[0], "default.html")
                     if not os.path.exists(template_file):
                         print("No template found for " + content_file)
                         continue
-                # clean up url
-                if url.endswith("index"):
-                    url = url[:-len("index")]
-                if not url.startswith('/'):
-                    url = '/' + url
-                if not url.endswith('/'):
-                    url += '/'
-                # parse content and meta data
-                with open(content_file, 'r') as f:
-                    content = self.md.convert(f.read())
-                    meta = self.md.Meta
-                    self.md.reset()
-                # ignore if draft and drafts not enabled
-                if not self.drafts_enabled and meta.get("draft"):
-                    continue
-                # get template
-                template = self.env.get_template(os.path.relpath(template_file, self.templates_path))
 
-                yield generator.Page(url, content, meta, template)
+                yield generator.Page(self, content_file, template_file)
 
 
     def create(self):
@@ -150,18 +131,16 @@ class Website:
         # populate lists dict
         lists = {}
         for page in self.pages():
-            if not page.meta or not "lists" in page.meta:
-                continue
-            for l in page.meta["lists"]:
+            for l in page.data["lists"]:
                 if not l in lists:
                     lists[l] = []
-                lists[l].append(page.data())
+                lists[l].append(page.data)
         
         # render pages
         for page in self.pages():
-            render = page.template.render(page=page.data(), lists=lists)
+            render = page.template.render(page=page.data, lists=lists)
             # write page to file
-            dir_path = self.generated_path if page.url == '/' else os.path.join(self.generated_path, page.url[1:])
+            dir_path = self.generated_path if page.data["url"] == '/' else os.path.join(self.generated_path, page.data["url"][1:])
             file_path = os.path.join(dir_path, "index.html")
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path)
