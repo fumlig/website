@@ -68,6 +68,7 @@ def serve(args):
     Watch for changes and automatically generate.
     """
     website = init_website(args, drafts=True)
+    website.generate()
     # watch for changes
     watch_thread = threading.Thread(target=watch_website, args=(website,))
     watch_thread.start()
