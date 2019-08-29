@@ -82,7 +82,12 @@ class Website:
                         print("No template found for " + content_file)
                         continue
 
-                yield generator.Page(self, content_file, template_file)
+                page = generator.Page(self, content_file, template_file)
+
+                if not self.drafts_enabled and page.data["draft"]:
+                    continue
+
+                yield page
 
 
     def create(self):
