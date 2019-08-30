@@ -36,11 +36,11 @@ class Page:
         # get date created from meta data or file (not cross platform)
         created = meta.get("created")
         if not created:
-            created = datetime.date.fromtimestamp(os.path.getctime(content_file))
+            created = datetime.datetime.fromtimestamp(os.path.getctime(content_file))
         # get date modified from meta data or file (not cross platform)
         modified = meta.get("modified")
         if not modified:
-            modified = datetime.date.fromtimestamp(os.path.getmtime(content_file))
+            modified = datetime.datetime.fromtimestamp(os.path.getmtime(content_file))
         # get whether or not content file is a draft
         draft = meta.get("draft")
         if not draft:
@@ -50,6 +50,7 @@ class Page:
         if not groups:
             groups = []
         
+        # TODO: avoid this
         self.content_file = content_file
         # mandatory content fields
         self.url = url
@@ -61,4 +62,3 @@ class Page:
         self.groups = groups
         # meta data field
         self.meta = meta
-        

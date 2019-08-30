@@ -15,7 +15,7 @@ Posts :: oskarlundin.com
 <link rel="stylesheet" type="text/css" href="/css/post.css">
 <link rel="stylesheet" type="text/css" href="/css/posts.css">
 
-<script src="/js/search.js"></script>
+<script src="/js/search-posts.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145117300-1"></script>
 <script>
@@ -47,13 +47,13 @@ gtag('config', 'UA-145117300-1');
 <section>
 <h2>All posts</h2>
 
-<input type="text" id="search-posts" onkeyup="search()" placeholder="Filter...">
+<input type="text" id="search-posts" onkeyup="searchPosts()" placeholder="Filter...">
 <p>
-<a href="#" onclick="searchFor(this.innerText)">markdown</a> :: 
+<a href="#" onclick="searchPostsFor(this.innerText)">markdown</a> :: 
 
-<a href="#" onclick="searchFor(this.innerText)">test tag</a> :: 
+<a href="#" onclick="searchPostsFor(this.innerText)">test tag</a> :: 
 
-<a href="#" onclick="searchFor(this.innerText)">c++</a>
+<a href="#" onclick="searchPostsFor(this.innerText)">c++</a>
 </p>
 
 <div id="posts">

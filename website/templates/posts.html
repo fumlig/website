@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="/js/search.js"></script>
+<script src="/js/search-posts.js"></script>
 {% endblock %}
 
 {% block main %}
@@ -18,11 +18,11 @@
 <section>
 <h2>All posts</h2>
 
-<input type="text" id="search-posts" onkeyup="search()" placeholder="Filter...">
+<input type="text" id="search-posts" onkeyup="searchPosts()" placeholder="Filter...">
 {%- set tags = [] %}{% for post in groups.posts %}{% for tag in post.meta.tags %}{% if not tag in tags %}{% if tags.append(tag) %}{% endif %}{% endif %}{% endfor %}{% endfor %}
 <p>
 {%- for tag in tags %}
-<a href="#" onclick="searchFor(this.innerText)">{{ tag }}</a>{{ " :: " if not loop.last }}
+<a href="#" onclick="searchPostsFor(this.innerText)">{{ tag }}</a>{{ " :: " if not loop.last }}
 {% endfor -%}
 </p>
 

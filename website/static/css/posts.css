@@ -8,3 +8,7 @@
     border-color: #444;
     border-width: 0 0 1px 0;
 }
+
+#search-posts:focus {
+    outline-color: #204A87;
+}

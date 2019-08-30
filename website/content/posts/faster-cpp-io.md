@@ -1,6 +1,6 @@
 ---
 title: Faster C++ I/O for Competitive Programming
-created: 2019-08-28
+created: 2019-08-28 17:00:00
 groups:
   - posts
 draft: true

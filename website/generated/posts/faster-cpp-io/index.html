@@ -39,198 +39,198 @@ gtag('config', 'UA-145117300-1');
 <main>
 <article class="post">
 <h1 class="post-title">Faster C++ I/O for Competitive Programming</h1>
-<p class="post-meta">Created: <time>2019-08-28</time></p>
-<p class="post-meta">Modified: <time>2019-08-30</time></p>
+<p class="post-created">Created: <time>2019-08-28</time></p>
+<p class="post-modified">Modified: <time>2019-08-30</time></p>
+<p class="post-tags">Tags: c++, test tag</p>
 <p class="post-lead">Some tricks for faster C++ input and output.</p>
 <div class="post-content"><p>A header file with faster I/O for C++.</p>
-<div class="codehilite"><pre><span></span><span class="c1">///</span>
-<span class="c1">/// \file io.h</span>
-<span class="c1">/// \brief IO functions</span>
-<span class="c1">///</span>
-<span class="c1">/// Functions for IO, focused on speed. This is achieved by specializing each</span>
-<span class="c1">/// function for the type it works with.</span>
-<span class="c1">///</span>
-<span class="c1">/// \author Oskar Lundin (olundin)</span>
-<span class="c1">///</span>
+<pre class="codehilite"><code class="language-cpp">///
+/// \file io.h
+/// \brief IO functions
+///
+/// Functions for IO, focused on speed. This is achieved by specializing each
+/// function for the type it works with.
+///
+/// \author Oskar Lundin (olundin)
+///
 
-<span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+#include &lt;cstdio&gt;
 
-<span class="cp">#ifdef _WIN32</span>
-<span class="cp">#define O_GETCHAR() _getchar_nolock()</span>
-<span class="cp">#define O_PUTCHAR(c) _putchar_nolock(c)</span>
-<span class="cp">#endif</span>
-<span class="cp">#ifdef __linux__</span>
-<span class="cp">#define O_GETCHAR() getchar_unlocked()</span>
-<span class="cp">#define O_PUTCHAR(c) putchar_unlocked(c)</span>
-<span class="cp">#endif</span>
+#ifdef _WIN32
+#define O_GETCHAR() _getchar_nolock()
+#define O_PUTCHAR(c) _putchar_nolock(c)
+#endif
+#ifdef __linux__
+#define O_GETCHAR() getchar_unlocked()
+#define O_PUTCHAR(c) putchar_unlocked(c)
+#endif
 
-<span class="k">namespace</span> <span class="n">o</span> <span class="p">{</span>
+namespace o {
 
-<span class="c1">///</span>
-<span class="c1">/// \brief Scans a character from stdin</span>
-<span class="c1">/// \return The character scanned from stdin</span>
-<span class="c1">///</span>
-<span class="kr">inline</span> <span class="kt">char</span> <span class="n">get_char</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="n">O_GETCHAR</span><span class="p">();</span>
-<span class="p">}</span>
+///
+/// \brief Scans a character from stdin
+/// \return The character scanned from stdin
+///
+inline char get_char() {
+  return O_GETCHAR();
+}
 
-<span class="c1">///</span>
-<span class="c1">/// \brief Appends a character to stdout</span>
-<span class="c1">/// \param c The character to append to stdout</span>
-<span class="c1">///</span>
-<span class="kr">inline</span> <span class="kt">void</span> <span class="n">put_char</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">O_PUTCHAR</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
-<span class="p">}</span>
+///
+/// \brief Appends a character to stdout
+/// \param c The character to append to stdout
+///
+inline void put_char(char c) {
+  O_PUTCHAR(c);
+}
 
 
-<span class="c1">///</span>
-<span class="c1">/// \brief Scans an integer from stdin</span>
-<span class="c1">///</span>
-<span class="c1">/// Scans an integer from standard input (stdin). Assumes that the integer</span>
-<span class="c1">/// is at the beginning of the input stream, with no whitespaces before it.</span>
-<span class="c1">/// Stops scanning when a character which isn&#39;t a number is encountered. This</span>
-<span class="c1">/// character is removed from the stream.</span>
-<span class="c1">///</span>
-<span class="c1">/// \tparam T Integer type (must be either char, int, short or long)</span>
-<span class="c1">/// \return The integer scanned</span>
-<span class="c1">///</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="kr">inline</span> <span class="n">T</span> <span class="n">scan_int</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">T</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="kt">bool</span> <span class="n">negative</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">get_char</span><span class="p">();</span>
-  <span class="c1">// check if negative</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">negative</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">get_char</span><span class="p">();</span>
-  <span class="p">}</span>
-  <span class="c1">// scan digits</span>
-  <span class="k">do</span> <span class="p">{</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">c</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">get_char</span><span class="p">();</span>
-  <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">);</span>
-  <span class="c1">// negate if negative</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">negative</span><span class="p">)</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="n">n</span><span class="p">;</span>
-  <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="c1">/// Explicit instantiation of scan_int for type int</span>
-<span class="k">template</span> <span class="kt">int</span> <span class="n">scan_int</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">();</span>
+///
+/// \brief Scans an integer from stdin
+///
+/// Scans an integer from standard input (stdin). Assumes that the integer
+/// is at the beginning of the input stream, with no whitespaces before it.
+/// Stops scanning when a character which isn't a number is encountered. This
+/// character is removed from the stream.
+///
+/// \tparam T Integer type (must be either char, int, short or long)
+/// \return The integer scanned
+///
+template &lt;typename T&gt;
+inline T scan_int() {
+  T n = 0;
+  bool negative = false;
+  char c = get_char();
+  // check if negative
+  if(c == '-') {
+    negative = true;
+    c = get_char();
+  }
+  // scan digits
+  do {
+    n = n * 10 + c - '0';
+    c = get_char();
+  } while(c &gt;= '0' &amp;&amp; c &lt;= '9');
+  // negate if negative
+  if(negative)
+    n = -n;
+  return n;
+}
+/// Explicit instantiation of scan_int for type int
+template int scan_int&lt;int&gt;();
 
-<span class="c1">///</span>
-<span class="c1">/// \brief Tries to scan an integer from stdin</span>
-<span class="c1">///</span>
-<span class="c1">/// Tries to scan an integer from standard input (stdin). If the first</span>
-<span class="c1">/// character is not a number, it will stop scanning and return false.</span>
-<span class="c1">/// Otherwise, the scan is continued until a character which isn&#39;t a number is</span>
-<span class="c1">/// encountered. This character is removed from the stream and the function</span>
-<span class="c1">/// returns true.</span>
-<span class="c1">///</span>
-<span class="c1">/// \tparam T Integer type (must be either char, int, short or long)</span>
-<span class="c1">/// \param n The integer to set</span>
-<span class="c1">/// \return True if the scan was successful, else false</span>
-<span class="c1">///</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="kr">inline</span> <span class="kt">bool</span> <span class="n">try_scan_int</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">get_char</span><span class="p">();</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">&lt;</span> <span class="sc">&#39;0&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-  <span class="n">ungetc</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
-  <span class="n">n</span> <span class="o">=</span> <span class="n">scan_int</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">();</span>
-  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-<span class="p">}</span>
+///
+/// \brief Tries to scan an integer from stdin
+///
+/// Tries to scan an integer from standard input (stdin). If the first
+/// character is not a number, it will stop scanning and return false.
+/// Otherwise, the scan is continued until a character which isn't a number is
+/// encountered. This character is removed from the stream and the function
+/// returns true.
+///
+/// \tparam T Integer type (must be either char, int, short or long)
+/// \param n The integer to set
+/// \return True if the scan was successful, else false
+///
+template &lt;typename T&gt;
+inline bool try_scan_int(T&amp; n) {
+  char c = get_char();
+  if(c &lt; '0' || c &gt; '9')
+    return false;
+  ungetc(c, stdin);
+  n = scan_int&lt;T&gt;();
+  return true;
+}
 
-<span class="c1">/// Explicit instantiation of scan_int_check for type int</span>
-<span class="k">template</span> <span class="kt">bool</span> <span class="n">try_scan_int</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span><span class="p">);</span>
+/// Explicit instantiation of scan_int_check for type int
+template bool try_scan_int&lt;int&gt;(int&amp;);
 
-<span class="c1">///</span>
-<span class="c1">/// \brief Prints an integer to stdout</span>
-<span class="c1">/// \tparam T Integer type (must be either char, int, short or long)</span>
-<span class="c1">/// \tparam N Maximum number of digits in integer</span>
-<span class="c1">/// \param n The integer to print</span>
-<span class="c1">///</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">N</span><span class="o">&gt;</span>
-<span class="kr">inline</span> <span class="kt">void</span> <span class="n">print_int</span><span class="p">(</span><span class="n">T</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">put_char</span><span class="p">(</span><span class="sc">&#39;0&#39;</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  <span class="c1">// check if negative</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">put_char</span><span class="p">(</span><span class="sc">&#39;-&#39;</span><span class="p">);</span>
-      <span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="n">n</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">// max number of digits is N</span>
-    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="c1">// scan digits and store</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="o">--</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">+</span> <span class="sc">&#39;0&#39;</span><span class="p">;</span>
-      <span class="n">n</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">// print each digit</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">!=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">put_char</span><span class="p">(</span><span class="n">buffer</span><span class="p">[</span><span class="o">++</span><span class="n">i</span><span class="p">]);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="c1">/// Explicit instantiation of scan_int_check for type int</span>
-<span class="k">template</span> <span class="kt">void</span> <span class="n">print_int</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">10</span><span class="o">&gt;</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+///
+/// \brief Prints an integer to stdout
+/// \tparam T Integer type (must be either char, int, short or long)
+/// \tparam N Maximum number of digits in integer
+/// \param n The integer to print
+///
+template&lt;typename T, size_t N&gt;
+inline void print_int(T n) {
+  if(n == 0) {
+    put_char('0');
+  } else {
+  // check if negative
+    if(n &lt; 0) {
+      put_char('-');
+      n = -n;
+    }
+    // max number of digits is N
+    char buffer[N];
+    int i = N - 1;
+    // scan digits and store
+    while(n) {
+      buffer[i--] = n % 10 + '0';
+      n /= 10;
+    }
+    // print each digit
+    while(i != N - 1) {
+      put_char(buffer[++i]);
+    }
+  }
+}
+/// Explicit instantiation of scan_int_check for type int
+template void print_int&lt;int, 10&gt;(int);
 
-<span class="c1">///</span>
-<span class="c1">/// \brief Scans a string from stdin</span>
-<span class="c1">///</span>
-<span class="c1">/// Scans a string standard input (stdin) until the delimiter \p d is reached.</span>
-<span class="c1">/// If the first character in stdin is EOF, the function stops scanning and</span>
-<span class="c1">/// returns false. Otherwise characters are stored in \p s until the delimiter</span>
-<span class="c1">/// is encountered and true is returned.</span>
-<span class="c1">///</span>
-<span class="c1">/// \param s String to fill with characters</span>
-<span class="c1">/// \return True if the scan was successful, else false</span>
-<span class="c1">///</span>
-<span class="kr">inline</span> <span class="kt">bool</span> <span class="nf">scan</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="kt">char</span> <span class="n">d</span> <span class="o">=</span> <span class="sc">&#39; &#39;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">get_char</span><span class="p">();</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">EOF</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="k">do</span> <span class="p">{</span>
-    <span class="n">s</span><span class="p">[</span><span class="n">index</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">get_char</span><span class="p">();</span>
-  <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="n">c</span> <span class="o">!=</span> <span class="n">d</span><span class="p">);</span>
-<span class="p">}</span>
+///
+/// \brief Scans a string from stdin
+///
+/// Scans a string standard input (stdin) until the delimiter \p d is reached.
+/// If the first character in stdin is EOF, the function stops scanning and
+/// returns false. Otherwise characters are stored in \p s until the delimiter
+/// is encountered and true is returned.
+///
+/// \param s String to fill with characters
+/// \return True if the scan was successful, else false
+///
+inline bool scan(char* s, char d = ' ') {
+  char c = get_char();
+  if(c == EOF)
+    return false;
+  int index = 0;
+  do {
+    s[index++] = c;
+    c = get_char();
+  } while(c != d);
+}
 
-<span class="c1">///</span>
-<span class="c1">/// \brief Scans an entire line from stdin</span>
-<span class="c1">///</span>
-<span class="c1">/// Calls \ref scan &quot;scan(s, &#39;\n&#39;)&quot;.</span>
-<span class="c1">///</span>
-<span class="c1">/// \param s String to fill with characters</span>
-<span class="c1">/// \return True if the scan was successful, else false</span>
-<span class="c1">///</span>
-<span class="kr">inline</span> <span class="kt">bool</span> <span class="nf">scanln</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="n">scan</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="sc">&#39;\n&#39;</span><span class="p">);</span>
-<span class="p">}</span>
+///
+/// \brief Scans an entire line from stdin
+///
+/// Calls \ref scan &quot;scan(s, '\n')&quot;.
+///
+/// \param s String to fill with characters
+/// \return True if the scan was successful, else false
+///
+inline bool scanln(char* s) {
+  return scan(s, '\n');
+}
 
-<span class="c1">///</span>
-<span class="c1">/// \brief Prints a string to stdout</span>
-<span class="c1">/// \param s String to print</span>
-<span class="c1">///</span>
-<span class="kr">inline</span> <span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
-        <span class="n">put_char</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">c</span><span class="o">++</span><span class="p">]);</span>
-<span class="p">}</span>
+///
+/// \brief Prints a string to stdout
+/// \param s String to print
+///
+inline void print(const char* s) {
+    int c = 0;
+    while(s[c] != '\0')
+        put_char(s[c++]);
+}
 
-<span class="c1">///</span>
-<span class="c1">/// \brief Prints a string to stdout and end line</span>
-<span class="c1">/// \param s String to print</span>
-<span class="c1">///</span>
-<span class="kr">inline</span> <span class="kt">void</span> <span class="nf">println</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">print</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-    <span class="n">put_char</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span>
-<span class="p">}</span>
+///
+/// \brief Prints a string to stdout and end line
+/// \param s String to print
+///
+inline void println(const char* s) {
+    print(s);
+    put_char('\n');
+}
 
-<span class="p">}</span>
-</pre></div>
+}</code></pre>
 
 
 <p>Ending text.</p></div>

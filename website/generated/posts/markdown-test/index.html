@@ -39,8 +39,9 @@ gtag('config', 'UA-145117300-1');
 <main>
 <article class="post">
 <h1 class="post-title">Markdown Test</h1>
-<p class="post-meta">Created: <time>2019-08-27</time></p>
-<p class="post-meta">Modified: <time>2019-08-30</time></p>
+<p class="post-created">Created: <time>2019-08-27</time></p>
+<p class="post-modified">Modified: <time>2019-08-30</time></p>
+<p class="post-tags">Tags: markdown, test tag</p>
 <p class="post-lead">A test of all markdown features.</p>
 <div class="post-content"><div class="toc"><span class="toctitle">Contents</span><ul>
 <li><a href="#default-features">Default Features</a><ul>
@@ -114,32 +115,26 @@ the family Rosaceae.</dd>
 </dl>
 <h4 id="fenced-code-blocks">Fenced Code Blocks</h4>
 <p>This is a paragraph introducing:</p>
-<div class="codehilite"><pre><span></span><span class="n">a</span> <span class="n">one</span><span class="o">-</span><span class="n">line</span> <span class="n">code</span> <span class="n">block</span>
-</pre></div>
+<pre class="codehilite"><code>a one-line code block</code></pre>
 
 
-<div class="codehilite"><pre><span></span><span class="c1"># python code</span>
-</pre></div>
+<pre class="codehilite"><code class="language-python"># python code</code></pre>
 
 
-<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>HTML Document<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</pre></div>
+<pre class="codehilite"><code class="language-html">&lt;p&gt;HTML Document&lt;/p&gt;</code></pre>
 
 
-<div class="codehilite"><pre><span></span><span class="c1"># more python code</span>
-</pre></div>
+<pre class="codehilite"><code class="language-python"># more python code</code></pre>
 
 
-<div class="codehilite"><pre><span></span><span class="hll"><span class="c1"># This line is emphasized</span>
-</span><span class="c1"># This line isn&#39;t</span>
-<span class="hll"><span class="c1"># This line is emphasized</span>
-</span></pre></div>
+<pre class="codehilite"><code class="language-python"># This line is emphasized
+# This line isn't
+# This line is emphasized</code></pre>
 
 
-<div class="codehilite"><pre><span></span><span class="hll"><span class="c1"># This line is emphasized</span>
-</span><span class="c1"># This line isn&#39;t</span>
-<span class="hll"><span class="c1"># This line is emphasized</span>
-</span></pre></div>
+<pre class="codehilite"><code class="language-python"># This line is emphasized
+# This line isn't
+# This line is emphasized</code></pre>
 
 
 <h4 id="footnotes">Footnotes</h4>
@@ -182,31 +177,26 @@ the family Rosaceae.</dd>
 </div>
 <h4 id="codehilite">Codehilite</h4>
 <p>Shebang (with path)</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="ch">#!/usr/bin/python</span>
-<span class="c1"># Code goes here ...</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-python linenums">#!/usr/bin/python
+# Code goes here ...</code></pre>
+
 
 <p>Shebang (no path)</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># Code goes here ...</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-python linenums"># Code goes here ...</code></pre>
+
 
 <p>Colons</p>
-<div class="codehilite"><pre><span></span><span class="c1"># Code goes here ...</span>
+<pre class="codehilite"><code class="language-python"># Code goes here ...
 
 
-<span class="p">:::</span><span class="n">python</span> <span class="n">hl_lines</span><span class="o">=</span><span class="s2">&quot;1 3&quot;</span>
-<span class="c1"># This line is emphasized</span>
-<span class="c1"># This line isn&#39;t</span>
-<span class="c1"># This line is emphasized</span>
-</pre></div>
+:::python hl_lines=&quot;1 3&quot;
+# This line is emphasized
+# This line isn't
+# This line is emphasized</code></pre>
 
 
 <p>When No Language is Defined</p>
-<div class="codehilite"><pre><span></span><span class="o">#</span> <span class="n">Code</span> <span class="n">goes</span> <span class="n">here</span> <span class="p">...</span>
-</pre></div>
+<pre class="codehilite"><code># Code goes here ...</code></pre>
 
 
 <h4 id="sane-lists">Sane Lists</h4>
@@ -229,8 +219,7 @@ the family Rosaceae.</dd>
 <p>A blockquote with
 multiple lines.</p>
 </blockquote>
-<div class="codehilite"><pre><span></span><span class="n">a</span> <span class="n">code</span> <span class="n">block</span>
-</pre></div>
+<pre class="codehilite"><code>a code block</code></pre>
 
 
 <p>A final paragraph.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>

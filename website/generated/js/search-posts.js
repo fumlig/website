@@ -1,4 +1,4 @@
-function search() {
+function searchPosts() {
 
     const input = document.getElementById("search-posts");
     const posts = document.getElementById("posts").getElementsByClassName("post");
@@ -56,8 +56,8 @@ function search() {
     }
 }
 
-function searchFor(filter) {
+function searchPostsFor(filter) {
     const input = document.getElementById("search-posts");
     input.value = filter;
-    search();
+    searchPosts();
 }
