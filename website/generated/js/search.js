@@ -1,9 +1,30 @@
 function search() {
+
     const input = document.getElementById("search-posts");
     const posts = document.getElementById("posts").getElementsByClassName("post");
 
     filter = input.value.toLowerCase();
 
+    let filters = []
+    let i = 0;
+    let f = "";
+    while(i < filter.length) {
+        if(filter[i] == ",") {
+            filters.push(f);
+            f = "";
+            // ignore spaces after ,
+            while(i+1 < filter.length && filter[i+1] == " ") {
+                i++;
+            }
+        } else {
+            f += filter[i];
+        }
+        i++;
+    }
+    if(f.length > 0) {
+        filters.push(f);
+    }
+    
     for(let p = 0; p < posts.length; p++) {
         const post = posts[p];
         const postTitle = post.getElementsByClassName("post-title")[0];
@@ -14,12 +35,20 @@ function search() {
         const postLeadContent = postLead.innerText.toLowerCase();
         const postTagsContent = postTags.innerText.toLowerCase();
 
-        const match = 
-            postTitleContent.indexOf(filter) > -1 || 
-            postLeadContent.indexOf(filter) > -1 ||
-            postTagsContent.indexOf(filter) > -1;
+        let show = true;
+        for(let f = 0; f < filters.length; f++) {
+            const match = 
+                postTitleContent.indexOf(filters[f]) > -1 || 
+                postLeadContent.indexOf(filters[f]) > -1 ||
+                postTagsContent.indexOf(filters[f]) > -1;
+            if(!match) {
+                show = false;
+                break;
+            }
+        }
 
-        if(match) {
+
+        if(show) {
             post.style.display = "block";
         } else {
             post.style.display = "none";
