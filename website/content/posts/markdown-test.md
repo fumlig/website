@@ -187,7 +187,7 @@ When No Language is Defined
 
 ### Third Party
 
-Tests of [third party extensions](hhttps://python-markdown.github.io/extensions/#third-party-extensions).
+Tests of [third party extensions](https://python-markdown.github.io/extensions/#third-party-extensions).
 
 #### YAML metadata extension
 
