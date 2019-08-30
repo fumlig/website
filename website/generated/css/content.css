@@ -57,14 +57,17 @@ h6:hover .headerlink {
 /* Admonitions */
 
 .admonition {
-    margin: 10px 0;
-    padding: 10px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding: 0 1em;
     border: 1px dotted #444;
     font-style: oblique;
 }
 
 .admonition-title {
     font-weight: bold;
+    margin-block-start: 1em;
+    margin-block-end: 0;
 }
 
 .admonition.note {
