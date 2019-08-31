@@ -16,7 +16,7 @@
 
 <h2>All posts</h2>
 
-<input type="text" id="search-posts" onkeyup="searchPosts()" placeholder="Filter...">
+<input type="search" id="search-posts" onkeyup="searchPosts()" placeholder="Filter...">
 {%- set tags = [] %}{% for post in groups.posts %}{% for tag in post.meta.tags %}{% if not tag in tags %}{% if tags.append(tag) %}{% endif %}{% endif %}{% endfor %}{% endfor %}
 <p>
 {% for tag in tags -%}

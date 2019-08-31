@@ -41,3 +41,10 @@ nav {
 a {
     color: #204A87;
 }
+
+::selection {
+    background: #fcb064; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+    background: #fcb064; /* Gecko Browsers */
+}
