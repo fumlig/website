@@ -5,9 +5,20 @@
 <head>
 {%- block head %}
 <meta charset="utf-8">
-<meta name="description" content="...">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Oskar Lundin">
+<meta name="description" content="{{ page.lead }}">
 <meta name="theme-color" content="#204A87">
+
+{%- block opengraph %}
+<meta property="og:site_name" content="oskarlundin.com">
+<meta property="og:title" content="{% if page.title %}{{ page.title }} :: {% endif %}oskarlundin.com">
+<meta property="og:url" content="https://www.oskarlundin.com{{ page.url }}">
+<meta property="og:description" content="{{ page.lead }}">
+{# <meta property="og:image" content=""> #}
+<meta property="og:type" content="website">
+{% endblock -%}
+
 <title>
 {%- block title %}
 {% if page.title %}{{ page.title }} :: {% endif %}oskarlundin.com

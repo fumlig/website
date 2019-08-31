@@ -49,6 +49,10 @@ class Page:
         groups = meta.get("groups")
         if not groups:
             groups = []
+        # get page lead
+        lead = meta.get("lead")
+        if not lead:
+            lead = content[:155]
         
         # TODO: avoid this
         self.content_file = content_file
@@ -60,5 +64,6 @@ class Page:
         self.modified = modified
         self.draft = draft
         self.groups = groups
+        self.lead = lead
         # meta data field
         self.meta = meta

@@ -22,7 +22,7 @@
 
 .toc ul {
     margin: 0;
-    counter-reset: item;
+    counter-reset: content-item;
 }
 
 .toc ul li {
@@ -30,8 +30,8 @@
 }
 
 .toc ul li:before {
-    content: counters(item, ".") " ";
-    counter-increment: item
+    content: counters(content-item, ".") " ";
+    counter-increment: content-item
 }
 
 .toctitle {

@@ -4,15 +4,14 @@ created: 2019-08-28 17:00:00
 groups:
   - posts
 draft: true
-
 lead: Some tricks for faster C++ input and output.
-author: Oskar Lundin
+
 tags:
   - c++
   - test tag
 ---
 
-A header file with faster I/O for C++.
+Complete header file with all functions.
 
 ```cpp
 ///
