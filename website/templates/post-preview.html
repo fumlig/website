@@ -4,6 +4,6 @@
 <p class="post-created">Created: <time>{{ post.created.strftime("%Y-%m-%d") }}</time></p>
 <p class="post-modified">Modified: <time>{{ post.modified.strftime("%Y-%m-%d") }}</time></p>
 <p class="post-tags">Tags: {% for tag in post.meta.tags %}{{ tag }}{{ ", " if not loop.last }}{% endfor %}</p>
-<p class="post-lead">{{ post.meta.lead }}</p>
+<p class="post-description">{{ post.meta.description }}</p>
 
 </article>

@@ -28,18 +28,18 @@ function searchPosts() {
     for(let p = 0; p < posts.length; p++) {
         const post = posts[p];
         const postTitle = post.getElementsByClassName("post-title")[0];
-        const postLead = post.getElementsByClassName("post-lead")[0];
+        const postDescription = post.getElementsByClassName("post-description")[0];
         const postTags = post.getElementsByClassName("post-tags")[0];
 
         const postTitleContent = postTitle.innerText.toLowerCase();
-        const postLeadContent = postLead.innerText.toLowerCase();
+        const postDescriptionContent = postDescription.innerText.toLowerCase();
         const postTagsContent = postTags.innerText.toLowerCase();
 
         let show = true;
         for(let f = 0; f < filters.length; f++) {
             const match = 
                 postTitleContent.indexOf(filters[f]) > -1 || 
-                postLeadContent.indexOf(filters[f]) > -1 ||
+                postDescriptionContent.indexOf(filters[f]) > -1 ||
                 postTagsContent.indexOf(filters[f]) > -1;
             if(!match) {
                 show = false;

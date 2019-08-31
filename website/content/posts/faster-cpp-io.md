@@ -4,7 +4,7 @@ created: 2019-08-28 17:00:00
 groups:
   - posts
 draft: true
-lead: Some tricks for faster C++ input and output.
+description: Some tricks for faster C++ input and output.
 
 tags:
   - c++

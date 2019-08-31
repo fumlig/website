@@ -4,7 +4,7 @@ created: 2019-08-27 7:00:00
 groups:
   - posts
 draft: false
-lead: A test of all markdown features.
+description: A test of all markdown features.
 
 tags:
   - markdown
@@ -142,13 +142,13 @@ Content Cell  | Content Cell
 
     This is the second paragraph.
 
-!!! note
+!!! info
     You should note that the title will be automatically capitalized.
 
-!!! danger "Don't try this at home"
+!!! warning "Don't try this at home"
     ...
 
-!!! important ""
+!!! danger ""
     This is an admonition box without a title.
 
 #### Codehilite

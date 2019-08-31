@@ -4,7 +4,7 @@
 <meta property="og:site_name" content="oskarlundin.com">
 <meta property="og:title" content="{% if page.title %}{{ page.title }} :: {% endif %}oskarlundin.com">
 <meta property="og:url" content="https://www.oskarlundin.com{{ page.url }}">
-<meta property="og:description" content="{{ page.lead }}">
+<meta property="og:description" content="{{ page.description }}">
 {# <meta property="og:image" content=""> #}
 
 <meta property="og:type" content="article">
@@ -12,9 +12,9 @@
 <meta property="article:modified_time" content="{{ page.modified.strftime('%Y-%m-%d') }}">
 <meta property="article:author" content="Oskar Lundin">
 <meta property="article:section" content="Technology">
-{% for tag in page.meta.tags %}
+{%- for tag in page.meta.tags %}
 <meta property="article:tag" content="{{ tag }}">
-{% endfor %}
+{% endfor -%}
 {% endblock -%}
 
 {% block stylesheets %}
@@ -27,7 +27,7 @@
 <p class="post-created">Created: <time>{{ page.created.strftime("%Y-%m-%d") }}</time></p>
 <p class="post-modified">Modified: <time>{{ page.modified.strftime("%Y-%m-%d") }}</time></p>
 <p class="post-tags">Tags: {% for tag in page.meta.tags %}{{ tag }}{{ ", " if not loop.last }}{% endfor %}</p>
-<p class="post-lead">{{ page.lead }}</p>
+<p class="post-description">{{ page.description }}</p>
 <div class="post-content">{{ page.content|safe }}</div>
 </article>
 {% endblock %}
