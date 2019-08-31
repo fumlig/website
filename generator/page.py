@@ -56,7 +56,6 @@ class Page:
             # remove tags from content and use that
             tags_re = re.compile("<.*?>")
             description = re.sub(tags_re, "", content)[:155]
-            print(description)
         
         # TODO: avoid this
         self.content_file = content_file
