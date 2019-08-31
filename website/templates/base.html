@@ -11,9 +11,9 @@
 <meta name="theme-color" content="#204A87">
 
 {%- block opengraph %}
-<meta property="og:site_name" content="oskarlundin.com">
-<meta property="og:title" content="{% if page.title %}{{ page.title }} :: {% endif %}oskarlundin.com">
-<meta property="og:url" content="https://www.oskarlundin.com{{ page.url }}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{% if page.title %}{{ page.title }} :: {% endif %}{{ site.title }}">
+<meta property="og:uri" content="{{ site.url }}{{ page.uri[1:] }}">
 <meta property="og:description" content="{{ page.description }}">
 {# <meta property="og:image" content=""> #}
 <meta property="og:type" content="website">
@@ -21,7 +21,7 @@
 
 <title>
 {%- block title %}
-{% if page.title %}{{ page.title }} :: {% endif %}oskarlundin.com
+{% if page.title %}{{ page.title }} :: {% endif %}{{ site.title }}
 {% endblock -%}</title>
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 <link rel="stylesheet" type="text/css" href="/css/content.css">
@@ -47,7 +47,7 @@ gtag('config', 'UA-145117300-1');
 <header>
 {%- block header %}
 <p style="text-align: center">Site under construction</p>
-<a id="logo" href="/"><img src="/images/logo.svg">oskarlundin.com</a>
+<a id="logo" href="/"><img src="/images/logo.svg">{{ site.title }}</a>
 <nav>
 <a href="/">home</a> ::
 <a href="/posts/">posts</a> ::
@@ -58,7 +58,6 @@ gtag('config', 'UA-145117300-1');
 
 <main>
 {%- block main %}
-
 {% endblock -%}
 </main>
 

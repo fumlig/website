@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {%- block opengraph %}
-<meta property="og:site_name" content="oskarlundin.com">
-<meta property="og:title" content="{% if page.title %}{{ page.title }} :: {% endif %}oskarlundin.com">
-<meta property="og:url" content="https://www.oskarlundin.com{{ page.url }}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{% if page.title %}{{ page.title }} :: {% endif %}{{ site.title }}">
+<meta property="og:uri" content="{{ site.url }}{{ page.uri[1:] }}">
 <meta property="og:description" content="{{ page.description }}">
 {# <meta property="og:image" content=""> #}
 

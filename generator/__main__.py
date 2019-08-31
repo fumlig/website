@@ -13,11 +13,11 @@ import generator
 def main():
     parser = argparse.ArgumentParser(description="Generate static website.")
     parser.add_argument("path", help="Website path.")
-    parser.add_argument("-c", "--content-path", help="Content path")
-    parser.add_argument("-g", "--generated-path", help="Generated path")
-    parser.add_argument("-s", "--static-path", help="Static path")
-    parser.add_argument("-t", "--templates-path", help="Templates path")
-
+    
+    #parser.add_argument("-c", "--content-path", help="Content path")
+    #parser.add_argument("-g", "--generated-path", help="Generated path")
+    #parser.add_argument("-s", "--static-path", help="Static path")
+    #parser.add_argument("-t", "--templates-path", help="Templates path")
 
     subparsers = parser.add_subparsers()
 
@@ -41,10 +41,6 @@ def main():
 def init_website(args, drafts=False):
     return generator.Website(
         path=args.path,
-        content_path=args.content_path,
-        generated_path=args.generated_path,
-        static_path=args.static_path,
-        templates_path=args.templates_path,
         drafts_enabled=drafts
     )
 

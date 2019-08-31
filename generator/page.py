@@ -11,18 +11,18 @@ class Page:
         content_file
     ):
         """Init page."""
-        # determine target url
-        url, ext = os.path.splitext(os.path.relpath(content_file, website.content_path))
+        # determine target uri
+        uri, ext = os.path.splitext(os.path.relpath(content_file, website.content_path))
         if not ext == ".md":
             raise ValueError("content_file '{}' must be a markdown file".format(content_file))
 
-        # clean up url
-        if url.endswith("index"):
-            url = url[:-len("index")]
-        if not url.startswith('/'):
-            url = '/' + url
-        if not url.endswith('/'):
-            url += '/'
+        # clean up uri
+        if uri.endswith("index"):
+            uri = uri[:-len("index")]
+        if not uri.startswith('/'):
+            uri = '/' + uri
+        if not uri.endswith('/'):
+            uri += '/'
 
         # parse content
         with open(content_file, 'r') as f:
@@ -33,7 +33,7 @@ class Page:
         # get title from meta data or file name
         title = meta.get("title")
         if not title:
-            title = ' '.join(map(str.capitalize, os.path.basename(os.path.normpath(url)).split('-')))
+            title = ' '.join(map(str.capitalize, os.path.basename(os.path.normpath(uri)).split('-')))
         # get date created from meta data or file (not cross platform)
         created = meta.get("created")
         if not created:
@@ -60,7 +60,7 @@ class Page:
         # TODO: avoid this
         self.content_file = content_file
         # mandatory content fields
-        self.url = url
+        self.uri = uri
         self.content = content
         self.title = title
         self.created = created

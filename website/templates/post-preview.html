@@ -1,6 +1,6 @@
 <article class=post>
 
-<h3 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+<h3 class="post-title"><a href="{{ post.uri }}">{{ post.title }}</a></h3>
 <p class="post-created">Created: <time>{{ post.created.strftime("%Y-%m-%d") }}</time></p>
 <p class="post-modified">Modified: <time>{{ post.modified.strftime("%Y-%m-%d") }}</time></p>
 <p class="post-tags">Tags: {% for tag in post.meta.tags %}{{ tag }}{{ ", " if not loop.last }}{% endfor %}</p>

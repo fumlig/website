@@ -2,6 +2,7 @@ import os
 import shutil
 import jinja2
 import markdown
+import yaml
 
 import generator
 
@@ -11,18 +12,35 @@ class Website:
 
     def __init__(
         self, 
-        path, 
-        content_path=None, 
-        generated_path=None, 
-        static_path=None, 
-        templates_path=None,
-        drafts_enabled=False
+        path,
+        drafts_enabled
     ):
         self.path = path
-        self.content_path = os.path.join(path, "content") if not content_path else content_path
-        self.generated_path = os.path.join(path, "generated") if not generated_path else generated_path
-        self.static_path = os.path.join(path, "static") if not static_path else static_path
-        self.templates_path = os.path.join(path, "templates") if not templates_path else templates_path
+        with open(os.path.join(self.path, "config.yaml")) as f:
+            try:
+                config = yaml.safe_load(f)
+            except yaml.YAMLError as exc:
+                print(exc)
+
+        content_path = config.get("content_path")
+        if not content_path:
+            content_path = "content"
+        self.content_path = os.path.join(path, content_path)
+
+        generated_path = config.get("generated_path")
+        if not generated_path:
+            generated_path = "generated"
+        self.generated_path = os.path.join(path, generated_path)
+
+        static_path = config.get("static_path")
+        if not static_path:
+            static_path = "static"
+        self.static_path = os.path.join(path, static_path)
+
+        templates_path = config.get("templates_path")
+        if not templates_path:
+            templates_path = "content"
+        self.templates_path = os.path.join(path, templates_path)
 
         self.drafts_enabled = drafts_enabled
 
@@ -120,6 +138,13 @@ class Website:
 
     def generate_pages(self):
         """Render templates with content."""
+        # get site data
+        with open(os.path.join(self.path, "site.yaml")) as f:
+            try:
+                site = yaml.safe_load(f)
+            except yaml.YAMLError as exc:
+                print(exc)
+
         # store groups
         groups = {}
         for page in self.pages():
@@ -149,13 +174,13 @@ class Website:
             )
             template_file = next(template_file_candidates, None)
             if not template_file:
-                print("no template file found for page " + page.url)
+                print("no template file found for page " + page.uri)
                 continue
             
             # render page
             template = self.env.get_template(os.path.relpath(template_file, self.templates_path))
-            render = template.render(page=page, groups=groups)
-            dir_path = os.path.join(self.generated_path, page.url[1:])
+            render = template.render(page=page, site=site, groups=groups)
+            dir_path = os.path.join(self.generated_path, page.uri[1:])
             file_path = os.path.join(dir_path, "index.html")
             if not os.path.exists(dir_path):
                 os.makedirs(dir_path)
