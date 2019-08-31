@@ -59,28 +59,19 @@ h6:hover .headerlink {
 .admonition {
     margin-block-start: 1em;
     margin-block-end: 1em;
-    padding: 0 1em;
-    border: 1px dotted #444;
+    padding: 10px;
     font-style: oblique;
+    background-color: #f8f8f8;
 }
 
 .admonition-title {
     font-weight: bold;
-    margin-block-start: 1em;
-    margin-block-end: 0;
+    border-bottom: 1px dotted #444;
 }
 
-.admonition.info .admonition-title:after {
+.admonition.info {
+    background-color: #ffffcc;
 }
-
-.admonition.warning .admonition-title:before {
-    content: "\26A0";
-    margin-right: 0.25em;
-}
-
-.admonition.danger .admonition-title:after {
-}
-
 
 /* CodeHilite */
 

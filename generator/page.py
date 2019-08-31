@@ -1,4 +1,5 @@
 import os
+import re
 import datetime
 
 
@@ -52,7 +53,10 @@ class Page:
         # get page description
         description = meta.get("description")
         if not description:
-            description = content[:155]
+            # remove tags from content and use that
+            tags_re = re.compile("<.*?>")
+            description = re.sub(tags_re, "", content)[:155]
+            print(description)
         
         # TODO: avoid this
         self.content_file = content_file
