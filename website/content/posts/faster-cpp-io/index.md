@@ -143,6 +143,6 @@ I/O Alternative                                      | Time (s)
 ## Conclusion
 
 So, how should you do I/O? Usually, just use `std::cout` and `std::cin` or
-`scanf()` and `printf()` as they are safer and easier to use. If you need to
-squeeze out performance you can, in very specific cases use some of the other
-tricks.
+`scanf()` and `printf()` as they are safe and easy to use. If you need to
+squeeze out performance you can, in very specific cases use the tricks
+mentioned in this article.
