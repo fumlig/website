@@ -69,7 +69,8 @@ class Website:
                 "attr_list",
                 # third party
                 "full_yaml_metadata",
-                "markdown_captions"
+                "markdown_captions",
+                "markdown_include.include"
             ],
             extension_configs={
                 "codehilite": {
@@ -78,9 +79,14 @@ class Website:
                 "toc": {
                     "title": "Contents",
                     "permalink": True
+                },
+                "markdown_include.include": {
+                    "base_path": os.path.abspath(self.content_path)
                 }
             }
         )
+
+        print()
 
 
     def pages(self):
