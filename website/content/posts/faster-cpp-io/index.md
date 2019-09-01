@@ -134,6 +134,7 @@ This new program takes 0,045 seconds which makes it the fastest yet.
 I/O Alternative                                      | Time (s)
 ---------------------------------------------------- | --------
 `getchar()` and `putchar()`, unlocked                | 0,045
+`getchar()` and `putchar()`                          | 0,065
 `std::cin` and `std::cout`, untied                   | 0,090
 `scanf()` and `printf()`                             | 0,132
 `std::cin` and `std::cout`, synchronization disabled | 0,406
