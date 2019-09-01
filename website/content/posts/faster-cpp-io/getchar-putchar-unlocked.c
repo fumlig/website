@@ -4,7 +4,6 @@
 #define N 1000000
 #define MAX_DIGITS 7 // 7 digits in 1 000 000
 
-
 #ifdef _WIN32
 #define GETCHAR() _getchar_nolock()
 #define PUTCHAR(c) _putchar_nolock(c)

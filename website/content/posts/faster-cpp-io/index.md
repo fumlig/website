@@ -27,11 +27,11 @@ at a cost. Let's look at an example program.
 ```
 
 Compiling this program with g++ version 9.10 and 1 000 000 randomized integers
-between 0 and 10 000 as input takes 0,515 seconds.
+between -10 000 and 10 000 as input takes 0,539 seconds.
 
 I/O Alternative                                      | Time (s)
 ---------------------------------------------------- | --------
-`std::cin` and `std::cout`                           | 0,515
+`std::cin` and `std::cout`                           | 0,539
 
 This doesn't seem half bad but we can do better!
 
@@ -46,12 +46,12 @@ To disable synchronization, add following line to your program:
 {!posts/faster-cpp-io/iostream-nosync.cpp!}
 ```
 
-This brings the program runtime down to 0,406 seconds.
+This brings the program runtime down to 0,421 seconds.
 
 I/O Alternative                                      | Time (s)
 ---------------------------------------------------- | --------
-`std::cin` and `std::cout`, synchronization disabled | 0,406
-`std::cin` and `std::cout`                           | 0,515
+`std::cin` and `std::cout`, synchronization disabled | 0,421
+`std::cin` and `std::cout`                           | 0,539
 
 One additional trick is to untie `std::cin` from `std::cout`. Tied streams
 ensure that one stream is flushed before any I/O operations on the other.
@@ -62,13 +62,13 @@ streams, one can use the following line:
 {!posts/faster-cpp-io/iostream-notie.cpp!}
 ```
 
-Running this program takes 0,090 seconds, which is a massive improvement.
+Running this program takes 0,100 seconds, which is a massive improvement.
 
 I/O Alternative                                      | Time (s)
 ---------------------------------------------------- | --------
-`std::cin` and `std::cout`, untied                   | 0,090
-`std::cin` and `std::cout`, synchronization disabled | 0,406
-`std::cin` and `std::cout`                           | 0,515
+`std::cin` and `std::cout`, untied                   | 0,100
+`std::cin` and `std::cout`, synchronization disabled | 0,421
+`std::cin` and `std::cout`                           | 0,539
 
 ### scanf() and printf()
 
@@ -81,14 +81,14 @@ safe than C++'s `std::cin` and `std::cout` but usually quite a lot faster.
 ```
 
 Compiled with gcc version 9.10 and ran with the same input as previous
-programs, this takes 0,132 seconds.
+programs, this takes 0,141 seconds.
 
 I/O Alternative                                      | Time (s)
 ---------------------------------------------------- | --------
-`std::cin` and `std::cout`, untied                   | 0,090
-`scanf()` and `printf()`                             | 0,132
-`std::cin` and `std::cout`, synchronization disabled | 0,406
-`std::cin` and `std::cout`                           | 0,515
+`std::cin` and `std::cout`, untied                   | 0,100
+`scanf()` and `printf()`                             | 0,141
+`std::cin` and `std::cout`, synchronization disabled | 0,421
+`std::cin` and `std::cout`                           | 0,539
 
 So, are `std::cin` and `std::cout` unsynchronized and untied still the winners?
 No - we can do better!
@@ -105,15 +105,15 @@ We can take advantage of these to write our own even faster I/O functions:
 {!posts/faster-cpp-io/getchar-putchar.c!}
 ```
 
-How long does this take to run? 0,065 seconds.
+How long does this take to run? 0,074 seconds.
 
 I/O Alternative                                      | Time (s)
 ---------------------------------------------------- | --------
-`getchar()` and `putchar()`                          | 0,065
-`std::cin` and `std::cout`, untied                   | 0,090
-`scanf()` and `printf()`                             | 0,132
-`std::cin` and `std::cout`, synchronization disabled | 0,406
-`std::cin` and `std::cout`                           | 0,515
+`getchar()` and `putchar()`                          | 0,074
+`std::cin` and `std::cout`, untied                   | 0,100
+`scanf()` and `printf()`                             | 0,141
+`std::cin` and `std::cout`, synchronization disabled | 0,421
+`std::cin` and `std::cout`                           | 0,539
 
 As it happens, there is one more trick we can use. Both `getchar()` and
 `putchar()` are thread safe which is generally preferrable. If one really wants
@@ -129,16 +129,16 @@ functions.
 {!posts/faster-cpp-io/getchar-putchar-unlocked.c!}
 ```
 
-This new program takes 0,045 seconds which makes it the fastest yet.
+This new program takes 0,055 seconds which makes it the fastest yet.
 
 I/O Alternative                                      | Time (s)
 ---------------------------------------------------- | --------
-`getchar()` and `putchar()`, unlocked                | 0,045
-`getchar()` and `putchar()`                          | 0,065
-`std::cin` and `std::cout`, untied                   | 0,090
-`scanf()` and `printf()`                             | 0,132
-`std::cin` and `std::cout`, synchronization disabled | 0,406
-`std::cin` and `std::cout`                           | 0,515
+`getchar()` and `putchar()`, unlocked                | 0,055
+`getchar()` and `putchar()`                          | 0,074
+`std::cin` and `std::cout`, untied                   | 0,100
+`scanf()` and `printf()`                             | 0,141
+`std::cin` and `std::cout`, synchronization disabled | 0,421
+`std::cin` and `std::cout`                           | 0,539
 
 ## Conclusion
 
