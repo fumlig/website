@@ -377,13 +377,16 @@ functions.</p>
 <span class="cp">#define N 1000000</span>
 <span class="cp">#define MAX_DIGITS 7 </span><span class="c1">// 7 digits in 1 000 000</span>
 
+
 <span class="cp">#ifdef _WIN32</span>
 <span class="cp">#define GETCHAR() _getchar_nolock()</span>
 <span class="cp">#define PUTCHAR(c) _putchar_nolock(c)</span>
-<span class="cp">#endif</span>
-<span class="cp">#ifdef __linux__</span>
+<span class="cp">#elif __unix__</span>
 <span class="cp">#define GETCHAR() getchar_unlocked()</span>
 <span class="cp">#define PUTCHAR(c) putchar_unlocked(c)</span>
+<span class="cp">#else</span>
+<span class="cp">#define GETCHAR() getchar()</span>
+<span class="cp">#define PUTCHAR(c) putchar(c)</span>
 <span class="cp">#endif</span>
 
 <span class="kt">int</span> <span class="nf">scanint</span><span class="p">()</span> 
