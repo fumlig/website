@@ -1,5 +1,5 @@
 ---
-title: Faster C++ I/O for Competitive Programming
+title: Faster C++ I/O
 created: 2019-08-28 17:00:00
 groups:
   - posts
@@ -59,8 +59,7 @@ I/O Alternative                                      | Time (s)
 
 One additional trick is to untie `std::cin` from `std::cout`. Tied streams
 ensure that one stream is flushed before any I/O operations on the other.
-This is usually not necessary for competitive programming. To untie the two
-streams, one can use the following line:
+It is possible to untie the two streams with the following function call:
 
 ```cpp hl_lines="6"
 {!posts/faster-cpp-io/iostream-notie.cpp!}

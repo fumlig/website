@@ -9,7 +9,7 @@
 <meta name="description" content="Some tricks for faster C++ input and output.">
 <meta name="theme-color" content="#204A87">
 <meta property="og:site_name" content="oskarlundin.com">
-<meta property="og:title" content="Faster C++ I/O for Competitive Programming :: oskarlundin.com">
+<meta property="og:title" content="Faster C++ I/O :: oskarlundin.com">
 <meta property="og:uri" content="https://www.oskarlundin.com/posts/faster-cpp-io/">
 <meta property="og:description" content="Some tricks for faster C++ input and output.">
 
@@ -25,7 +25,7 @@
 
 <meta property="article:tag" content="competitive programming">
 <title>
-Faster C++ I/O for Competitive Programming :: oskarlundin.com
+Faster C++ I/O :: oskarlundin.com
 </title>
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 <link rel="stylesheet" type="text/css" href="/css/content.css">
@@ -55,7 +55,7 @@ gtag('config', 'UA-145117300-1');
 
 <main>
 <article class="post">
-<h1 class="post-title">Faster C++ I/O for Competitive Programming</h1>
+<h1 class="post-title">Faster C++ I/O</h1>
 <p class="post-created">Created: <time>2019-08-28</time></p>
 <p class="post-modified">Modified: <time>2019-09-01</time></p>
 <p class="post-tags">Tags: c, c++, competitive programming</p>
@@ -165,8 +165,7 @@ can lead to an improvement in performance.</p>
 <h4 id="untying-stdcin-from-stdcout">Untying <code>std::cin</code> from <code>std::cout</code><a class="headerlink" href="#untying-stdcin-from-stdcout" title="Permanent link">&para;</a></h4>
 <p>One additional trick is to untie <code>std::cin</code> from <code>std::cout</code>. Tied streams
 ensure that one stream is flushed before any I/O operations on the other.
-This is usually not necessary for competitive programming. To untie the two
-streams, one can use the following line:</p>
+It is possible to untie the two streams with the following function call:</p>
 <div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
