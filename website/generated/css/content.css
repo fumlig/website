@@ -1,3 +1,13 @@
+/* Tables */
+table th {
+    border-bottom: 1px dotted #444;
+    text-align: left;
+}
+
+table th:not(:last-child), table td:not(:last-child) {
+    padding-right: 10px;
+}
+
 /* Footnotes */
 
 .footnote hr {
@@ -89,7 +99,7 @@ h6:hover .headerlink {
     margin: 10px;
 }
 
-.codehilite .hll { background-color: #ffffcc }
+.codehilite .hll { background-color: #ffffcc; display: block; width: 100%; }
 .codehilite  { background: #f8f8f8; }
 .codehilite .c { color: #8f5902; font-style: italic } /* Comment */
 .codehilite .err { color: #a40000; border: 1px solid #ef2929 } /* Error */

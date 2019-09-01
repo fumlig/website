@@ -3,7 +3,7 @@ title: Markdown Test
 created: 2019-08-27 7:00:00
 groups:
   - posts
-draft: false
+draft: true
 description: A test of all markdown features.
 
 tags:
