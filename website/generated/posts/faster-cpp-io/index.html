@@ -62,9 +62,16 @@ gtag('config', 'UA-145117300-1');
 <p class="post-description">Some tricks for faster C++ input and output.</p>
 <div class="post-content"><div class="toc"><span class="toctitle">Contents</span><ul>
 <li><a href="#different-io-alternatives">Different I/O Alternatives</a><ul>
-<li><a href="#stdcin-and-stdcout">std::cin and std::cout</a></li>
+<li><a href="#stdcin-and-stdcout">std::cin and std::cout</a><ul>
+<li><a href="#disable-synchronization">Disable Synchronization</a></li>
+<li><a href="#untying-stdcin-from-stdcout">Untying std::cin from std::cout</a></li>
+</ul>
+</li>
 <li><a href="#scanf-and-printf">scanf() and printf()</a></li>
-<li><a href="#getchar-and-putchar">getchar() and putchar()</a></li>
+<li><a href="#getchar-and-putchar">getchar() and putchar()</a><ul>
+<li><a href="#unlocked">Unlocked</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#conclusion">Conclusion</a></li>
@@ -110,6 +117,7 @@ between -10 000 and 10 000 as input takes 0,539 seconds.</p>
 </tbody>
 </table>
 <p>This doesn't seem half bad but we can do better!</p>
+<h4 id="disable-synchronization">Disable Synchronization<a class="headerlink" href="#disable-synchronization" title="Permanent link">&para;</a></h4>
 <p>The C and C++ standard streams are per default synchronized. This allows you to
 mix C- and C++-style I/O and get deterministic results. However, if you are
 sure that you won't use C-style I/O, you can disable this synchronization. This
@@ -154,6 +162,7 @@ can lead to an improvement in performance.</p>
 </tr>
 </tbody>
 </table>
+<h4 id="untying-stdcin-from-stdcout">Untying <code>std::cin</code> from <code>std::cout</code><a class="headerlink" href="#untying-stdcin-from-stdcout" title="Permanent link">&para;</a></h4>
 <p>One additional trick is to untie <code>std::cin</code> from <code>std::cout</code>. Tied streams
 ensure that one stream is flushed before any I/O operations on the other.
 This is usually not necessary for competitive programming. To untie the two
@@ -363,6 +372,7 @@ to <code>stdin</code> and <code>stdout</code>.</p>
 </tr>
 </tbody>
 </table>
+<h4 id="unlocked">Unlocked<a class="headerlink" href="#unlocked" title="Permanent link">&para;</a></h4>
 <p>As it happens, there is one more trick we can use. Both <code>getchar()</code> and
 <code>putchar()</code> are thread safe which is generally preferrable. If one really wants
 the fastest possible I/O there are so called unlocked versions of <code>getchar()</code>

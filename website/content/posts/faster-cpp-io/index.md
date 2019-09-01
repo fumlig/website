@@ -35,6 +35,8 @@ I/O Alternative                                      | Time (s)
 
 This doesn't seem half bad but we can do better!
 
+#### Disable Synchronization
+
 The C and C++ standard streams are per default synchronized. This allows you to
 mix C- and C++-style I/O and get deterministic results. However, if you are
 sure that you won't use C-style I/O, you can disable this synchronization. This
@@ -52,6 +54,8 @@ I/O Alternative                                      | Time (s)
 ---------------------------------------------------- | --------
 `std::cin` and `std::cout`, synchronization disabled | 0,421
 `std::cin` and `std::cout`                           | 0,539
+
+#### Untying `std::cin` from `std::cout`
 
 One additional trick is to untie `std::cin` from `std::cout`. Tied streams
 ensure that one stream is flushed before any I/O operations on the other.
@@ -114,6 +118,8 @@ I/O Alternative                                      | Time (s)
 `scanf()` and `printf()`                             | 0,141
 `std::cin` and `std::cout`, synchronization disabled | 0,421
 `std::cin` and `std::cout`                           | 0,539
+
+#### Unlocked
 
 As it happens, there is one more trick we can use. Both `getchar()` and
 `putchar()` are thread safe which is generally preferrable. If one really wants
