@@ -88,9 +88,10 @@ class Website:
         # generate a page for each content markdown
         for root, dirs, files in os.walk(self.content_path):
             for f in files:
-                content_file = os.path.join(root, f)
-                page = generator.Page(self, content_file)
-                yield page
+                if os.path.splitext(f)[1] == ".md":
+                    content_file = os.path.join(root, f)
+                    page = generator.Page(self, content_file)
+                    yield page
 
 
     def create(self):
@@ -162,18 +163,15 @@ class Website:
             if not self.drafts_enabled and page.draft:
                 continue
             # determine template file
-            template_file_candidates = filter(
-                os.path.exists, 
-                [
-                    # specific
-                    os.path.join(self.templates_path, os.path.splitext(os.path.relpath((page.content_file), self.content_path))[0] + ".html"),
-                    # default
-                    os.path.join(self.templates_path, os.path.dirname(os.path.relpath(page.content_file, self.content_path)), "default.html")
-                    # TODO: default, parent directory
-                ]
-            )
-            template_file = next(template_file_candidates, None)
-            if not template_file:
+            template_dir = os.path.join(self.templates_path, os.path.dirname(os.path.relpath(page.content_file, self.content_path)))
+            template_file = os.path.join(template_dir, os.path.splitext(os.path.basename(page.content_file))[0] + ".html")
+            while not os.path.exists(template_file):
+                template_file = os.path.join(template_dir, "default.html")
+                if os.path.normpath(os.path.join(template_dir, os.pardir)) == os.path.normpath(os.path.join(self.templates_path, os.pardir)):
+                    break;
+                template_dir = os.path.normpath(os.path.join(template_dir, os.pardir))
+
+            if not os.path.exists(template_file):
                 print("no template file found for page " + page.uri)
                 continue
             

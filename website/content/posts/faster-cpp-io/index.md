@@ -11,6 +11,10 @@ tags:
   - test tag
 ---
 
+## C++ Standard Streams
+
+## Comparison
+
 Complete header file with all functions.
 
 ```cpp
