@@ -16,7 +16,7 @@ tags:
 
 ## Different I/O Alternatives
 
-### std::cin and std::cout
+### `std::cin` and `std::cout`
 
 Using `<iostream>`´s `std::cin` and `std::cout` is the preferred way to handle
 input and output in C++. It's type-safe and extensible, but all of this comes
