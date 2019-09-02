@@ -1,4 +1,8 @@
 /* Tables */
+table {
+    width: 100%;
+}
+
 table th {
     border-bottom: 1px dotted #444;
     text-align: left;
