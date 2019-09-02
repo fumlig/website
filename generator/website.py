@@ -70,6 +70,7 @@ class Website:
                 # third party
                 "full_yaml_metadata",
                 "markdown_captions",
+                "mdx_math",
                 "markdown_include.include"
             ],
             extension_configs={

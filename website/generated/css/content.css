@@ -83,6 +83,12 @@ h6:hover .headerlink {
     background-color: #ffffcc;
 }
 
+/* Code */
+
+code {
+    color: #ce5c00;
+}
+
 /* CodeHilite */
 
 .codehilitetable {
