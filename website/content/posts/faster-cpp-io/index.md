@@ -36,7 +36,7 @@ I/O Alternative                                      | Time (s)
 
 This doesn't seem half bad but we can do better!
 
-#### Disable Synchronization
+#### Disable Synchronization with `stdio`
 
 The C and C++ standard streams are per default synchronized. This allows you to
 mix C- and C++-style I/O and get deterministic results. However, if you are
@@ -59,8 +59,10 @@ I/O Alternative                                      | Time (s)
 #### Untying `std::cin` from `std::cout`
 
 One additional trick is to untie `std::cin` from `std::cout`. Tied streams
-ensure that one stream is flushed before any I/O operations on the other.
-It is possible to untie the two streams with the following function call:
+ensure that one stream is flushed before any I/O operations on the other. This
+is useful for interactive console programs but also slows down programs for
+large I/O. It is possible to untie the two streams with the following function
+call:
 
 ```cpp hl_lines="6"
 {!posts/faster-cpp-io/iostream-notie.cpp!}
@@ -103,7 +105,8 @@ No - we can do better!
 standard library. They are used to get and put individual characters from and
 to `stdin` and `stdout`.
 
-We can take advantage of these to write our own even faster I/O functions:
+We can take advantage of these to write our own minimalistic and even faster 
+I/O functions:
 
 ```c
 {!posts/faster-cpp-io/getchar-putchar.c!}
@@ -124,7 +127,8 @@ I/O Alternative                                      | Time (s)
 As it happens, there is one more trick we can use. Both `getchar()` and
 `putchar()` are thread safe which is generally preferrable. If one really wants
 the fastest possible I/O there are so called unlocked versions of `getchar()`
-and `putchar()`.
+and `putchar()`. These functions should only be used in thread-safe contexts
+such as single-threaded applications.
 
 On POSIX systems, these are defined as `getchar_unlocked()` and
 `putchar_unlocked()`. On Windows systems, they are defined as

@@ -71,7 +71,7 @@ gtag('config', 'UA-145117300-1');
 <div class="post-content"><div class="toc"><span class="toctitle">Contents</span><ul>
 <li><a href="#different-io-alternatives">Different I/O Alternatives</a><ul>
 <li><a href="#stdcin-and-stdcout">std::cin and std::cout</a><ul>
-<li><a href="#disable-synchronization">Disable Synchronization</a></li>
+<li><a href="#disable-synchronization-with-stdio">Disable Synchronization with stdio</a></li>
 <li><a href="#untying-stdcin-from-stdcout">Untying std::cin from std::cout</a></li>
 </ul>
 </li>
@@ -126,7 +126,7 @@ takes 0,539 seconds.</p>
 </tbody>
 </table>
 <p>This doesn't seem half bad but we can do better!</p>
-<h4 id="disable-synchronization">Disable Synchronization<a class="headerlink" href="#disable-synchronization" title="Permanent link">&para;</a></h4>
+<h4 id="disable-synchronization-with-stdio">Disable Synchronization with <code>stdio</code><a class="headerlink" href="#disable-synchronization-with-stdio" title="Permanent link">&para;</a></h4>
 <p>The C and C++ standard streams are per default synchronized. This allows you to
 mix C- and C++-style I/O and get deterministic results. However, if you are
 sure that you won't use C-style I/O, you can disable this synchronization. This
@@ -173,8 +173,10 @@ can lead to an improvement in performance.</p>
 </table>
 <h4 id="untying-stdcin-from-stdcout">Untying <code>std::cin</code> from <code>std::cout</code><a class="headerlink" href="#untying-stdcin-from-stdcout" title="Permanent link">&para;</a></h4>
 <p>One additional trick is to untie <code>std::cin</code> from <code>std::cout</code>. Tied streams
-ensure that one stream is flushed before any I/O operations on the other.
-It is possible to untie the two streams with the following function call:</p>
+ensure that one stream is flushed before any I/O operations on the other. This
+is useful for interactive console programs but also slows down programs for
+large I/O. It is possible to untie the two streams with the following function
+call:</p>
 <div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
@@ -275,7 +277,8 @@ No - we can do better!</p>
 <p><code>getchar()</code> and <code>putchar()</code> are the most primitive I/O functions in the C
 standard library. They are used to get and put individual characters from and
 to <code>stdin</code> and <code>stdout</code>.</p>
-<p>We can take advantage of these to write our own even faster I/O functions:</p>
+<p>We can take advantage of these to write our own minimalistic and even faster 
+I/O functions:</p>
 <div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp"></span>
 
@@ -384,7 +387,8 @@ to <code>stdin</code> and <code>stdout</code>.</p>
 <p>As it happens, there is one more trick we can use. Both <code>getchar()</code> and
 <code>putchar()</code> are thread safe which is generally preferrable. If one really wants
 the fastest possible I/O there are so called unlocked versions of <code>getchar()</code>
-and <code>putchar()</code>.</p>
+and <code>putchar()</code>. These functions should only be used in thread-safe contexts
+such as single-threaded applications.</p>
 <p>On POSIX systems, these are defined as <code>getchar_unlocked()</code> and
 <code>putchar_unlocked()</code>. On Windows systems, they are defined as
 <code>_getchar_nolock()</code> and <code>_putchar_nolock()</code>. Let's use these in our custom I/O
