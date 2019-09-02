@@ -83,6 +83,9 @@ class Website:
                 },
                 "markdown_include.include": {
                     "base_path": os.path.abspath(self.content_path)
+                },
+                "mdx_math": {
+                    "enable_dollar_delimiter": True
                 }
             }
         )

@@ -31,7 +31,6 @@ Faster C++ I/O :: oskarlundin.com
 <link rel="stylesheet" type="text/css" href="/css/content.css">
 <link rel="stylesheet" type="text/css" href="/css/post.css">
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js"></script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     config: ["MMLorHTML.js"],
@@ -39,6 +38,7 @@ MathJax.Hub.Config({
     extensions: ["MathMenu.js", "MathZoom.js"]
 });
 </script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145117300-1"></script>
 <script>
@@ -108,8 +108,9 @@ at a cost. Let's look at an example program.</p>
 </pre></div>
 
 
-<p>Compiling this program with g++ version 9.10 and 1 000 000 randomized integers
-between -10 000 and 10 000 as input takes 0,539 seconds.</p>
+<p>Compiling this program with g++ version 9.10 and runnning it with <script type="math/tex">10^6</script>
+randomized integers <script type="math/tex">\in \mathopen{[}-10 000..10 000\mathclose{]}</script> as input
+takes 0,539 seconds.</p>
 <table>
 <thead>
 <tr>

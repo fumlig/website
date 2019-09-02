@@ -26,8 +26,9 @@ at a cost. Let's look at an example program.
 {!posts/faster-cpp-io/iostream.cpp!}
 ```
 
-Compiling this program with g++ version 9.10 and 1 000 000 randomized integers
-between -10 000 and 10 000 as input takes 0,539 seconds.
+Compiling this program with g++ version 9.10 and runnning it with $10^6$
+randomized integers $\in \mathopen{[}-10 000..10 000\mathclose{]}$ as input
+takes 0,539 seconds.
 
 I/O Alternative                                      | Time (s)
 ---------------------------------------------------- | --------
