@@ -133,6 +133,7 @@ class Website:
         self.clean()
         self.generate_static()
         self.generate_pages()
+        self.generate_sitemap()
 
     
     def generate_static(self):
@@ -194,3 +195,18 @@ class Website:
                 os.makedirs(dir_path)
             with open(file_path, 'w') as f:
                 f.write(render)
+
+    def generate_sitemap(self):
+        """Generate sitemap.xml."""
+        # get site data
+        with open(os.path.join(self.path, "site.yaml")) as f:
+            try:
+                site = yaml.safe_load(f)
+            except yaml.YAMLError as exc:
+                print(exc)
+
+        template = self.env.get_template("sitemap.xml")
+        render = template.render(pages=self.pages(), site=site)
+        file = os.path.join(self.generated_path, "sitemap.xml")
+        with open(file, 'w') as f:
+            f.write(render)
