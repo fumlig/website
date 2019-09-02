@@ -53,7 +53,12 @@ gtag('config', 'UA-145117300-1');
 <body>
 
 <header>
-<a id="logo" href="/"><img src="/images/logo.svg">oskarlundin.com</a>
+<span id="logo">
+    <a href="/">
+        <img src="/images/logo.svg" />
+        oskarlundin.com
+    </a>
+</span>
 <nav>
 <a href="/">home</a> ::
 <a href="/posts/">posts</a> ::
@@ -389,7 +394,7 @@ I/O functions:</p>
 the fastest possible I/O there are so called unlocked versions of <code>getchar()</code>
 and <code>putchar()</code>. These functions should only be used in thread-safe contexts
 such as single-threaded applications.</p>
-<p>On POSIX systems, these are defined as <code>getchar_unlocked()</code> and
+<p>On POSIX systems, they are defined as <code>getchar_unlocked()</code> and
 <code>putchar_unlocked()</code>. On Windows systems, they are defined as
 <code>_getchar_nolock()</code> and <code>_putchar_nolock()</code>. Let's use these in our custom I/O
 functions.</p>

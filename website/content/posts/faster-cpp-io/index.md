@@ -130,7 +130,7 @@ the fastest possible I/O there are so called unlocked versions of `getchar()`
 and `putchar()`. These functions should only be used in thread-safe contexts
 such as single-threaded applications.
 
-On POSIX systems, these are defined as `getchar_unlocked()` and
+On POSIX systems, they are defined as `getchar_unlocked()` and
 `putchar_unlocked()`. On Windows systems, they are defined as
 `_getchar_nolock()` and `_putchar_nolock()`. Let's use these in our custom I/O
 functions.
