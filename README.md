@@ -6,6 +6,6 @@
 
 ## To Do
 
-- More meta data
-- Some form of global config
-- Posts!
+- Clean up code
+- Possibly integrate SASS, Stylus or similar
+- Write post about static site generator
