@@ -1,21 +1,23 @@
+@import url("/css/constants.css");
+
 /* Tables */
 table {
     width: 100%;
 }
 
 table th {
-    border-bottom: 1px dotted #444;
+    border-bottom: 1px dotted var(--color-foreground);
     text-align: left;
 }
 
 table th:not(:last-child), table td:not(:last-child) {
-    padding-right: 10px;
+    padding-right: var(--padding-default);
 }
 
 /* Footnotes */
 
 .footnote hr {
-    border-top: 1px dotted #444;
+    border-top: 1px dotted var(--color-foreground);
     border-right: none;
     border-bottom: none;
     border-left: none;
@@ -26,8 +28,8 @@ table th:not(:last-child), table td:not(:last-child) {
 
 .toc {
     display: block;
-    padding: 10px;
-    border: 1px dotted #444;
+    padding: var(--padding-default);
+    border: 1px dotted var(--color-foreground);
 }
 
 .toc > ul {
@@ -73,14 +75,14 @@ h6:hover .headerlink {
 .admonition {
     margin-block-start: 1em;
     margin-block-end: 1em;
-    padding: 10px;
+    padding: var(--padding-default);
     font-style: oblique;
     background-color: #f8f8f8;
 }
 
 .admonition-title {
     font-weight: bold;
-    border-bottom: 1px dotted #444;
+    border-bottom: 1px dotted var(--color-foreground);
 }
 
 .admonition.info {
@@ -106,7 +108,7 @@ code {
 }
 
 .codehilite pre {
-    margin: 10px;
+    margin: var(--padding-default);
 }
 
 .codehilite .hll { background-color: #ffffcc; width: 100%; }

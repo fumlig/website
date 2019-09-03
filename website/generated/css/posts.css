@@ -1,3 +1,5 @@
+@import url("/css/constants.css");
+
 #search-posts {
     display: block;
     width: 100%;
@@ -5,10 +7,10 @@
     margin-block-end: 1em;
     padding: 0.5em 0;
     border-style: dotted;
-    border-color: #444;
+    border-color: var(--color-foreground);
     border-width: 0 0 1px 0;
 }
 
 #search-posts:focus {
-    outline-color: #204A87;
+    outline-color: var(--color-accent);
 }

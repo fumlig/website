@@ -1,3 +1,5 @@
+@import url("/css/constants.css");
+
 .post {
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -39,7 +41,7 @@
 }
 
 .post-content hr {
-    border-top: 1px dotted #444;
+    border-top: 1px dotted var(--color-foreground);
     border-right: none;
     border-bottom: none;
     border-left: none;
