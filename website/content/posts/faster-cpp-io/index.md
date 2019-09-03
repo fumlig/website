@@ -26,9 +26,8 @@ at a cost. Let's look at an example program.
 {!posts/faster-cpp-io/iostream.cpp!}
 ```
 
-Compiling this program with g++ version 9.10 and runnning it with $10^6$
-randomized integers $\in \mathopen{[}-10 000..10 000\mathclose{]}$ as input
-takes 0,539 seconds.
+Compiling this program with g++ 9.10 and running it on my machine with 10^6
+randomized integers between -10^4 and 10^4 as input takes 0,539 seconds.
 
 I/O Alternative                                      | Time (s)
 ---------------------------------------------------- | --------
@@ -86,7 +85,7 @@ safe than C++'s `std::cin` and `std::cout` but usually quite a lot faster.
 {!posts/faster-cpp-io/stdio.c!}
 ```
 
-Compiled with gcc version 9.10 and ran with the same input as previous
+Compiled with gcc 9.10 and run on my machine with the same input as previous
 programs, this takes 0,141 seconds.
 
 I/O Alternative                                      | Time (s)
@@ -105,7 +104,7 @@ No - we can do better!
 standard library. They are used to get and put individual characters from and
 to `stdin` and `stdout`.
 
-We can take advantage of these to write our own minimalistic and even faster 
+We can take advantage of these to write our own minimalistic and even faster
 I/O functions:
 
 ```c
@@ -122,7 +121,7 @@ I/O Alternative                                      | Time (s)
 `std::cin` and `std::cout`, synchronization disabled | 0,421
 `std::cin` and `std::cout`                           | 0,539
 
-#### Unlocked
+#### Disable Thread Safety
 
 As it happens, there is one more trick we can use. Both `getchar()` and
 `putchar()` are thread safe which is generally preferrable. If one really wants
