@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+        <loc>https://www.oskarlundin.com/posts/</loc>
+        <lastmod>2019-09-02</lastmod>
+    </url>
+    
+    <url>
         <loc>https://www.oskarlundin.com/</loc>
-        <lastmod>2019-08-30</lastmod>
+        <lastmod>2019-09-02</lastmod>
     </url>
     
     <url>
@@ -11,22 +16,17 @@
     </url>
     
     <url>
-        <loc>https://www.oskarlundin.com/posts/</loc>
-        <lastmod>2019-09-01</lastmod>
+        <loc>https://www.oskarlundin.com/posts/static-site-generator/</loc>
+        <lastmod>2019-09-02</lastmod>
+    </url>
+    
+    <url>
+        <loc>https://www.oskarlundin.com/posts/static-site-generator/markdown-test/</loc>
+        <lastmod>2019-09-02</lastmod>
     </url>
     
     <url>
         <loc>https://www.oskarlundin.com/posts/faster-cpp-io/</loc>
         <lastmod>2019-09-03</lastmod>
-    </url>
-    
-    <url>
-        <loc>https://www.oskarlundin.com/posts/static-site-generator/</loc>
-        <lastmod>2019-09-01</lastmod>
-    </url>
-    
-    <url>
-        <loc>https://www.oskarlundin.com/posts/static-site-generator/markdown-test/</loc>
-        <lastmod>2019-09-01</lastmod>
     </url>
     </urlset>
