@@ -109,7 +109,7 @@ code {
     margin: 10px;
 }
 
-.codehilite .hll { background-color: #ffffcc; display: block; width: 100%; }
+.codehilite .hll { background-color: #ffffcc; width: 100%; }
 .codehilite  { background: #f8f8f8; }
 .codehilite .c { color: #8f5902; font-style: italic } /* Comment */
 .codehilite .err { color: #a40000; border: 1px solid #ef2929 } /* Error */
