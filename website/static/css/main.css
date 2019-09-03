@@ -25,7 +25,11 @@ footer {
 }
 
 nav {
-    float: right;
+    text-align: right;
+}
+
+#logo {
+    float: left;
 }
 
 #logo a {

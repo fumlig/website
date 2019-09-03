@@ -18,6 +18,10 @@
     margin-block-end: 1em;
 }
 
+.post-content p {
+    text-align: justify;
+}
+
 .post-content figure {
     text-align: center;
 }
