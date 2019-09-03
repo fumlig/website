@@ -92,6 +92,7 @@ h6:hover .headerlink {
 /* Code */
 
 code {
+    font-family: var(--font-family-code);
     background-color: #f0f0f0;
 }
 
@@ -104,6 +105,7 @@ code {
 }
 
 .codehilite {
+    font-family: var(--font-family-code);
     overflow: auto;
 }
 
