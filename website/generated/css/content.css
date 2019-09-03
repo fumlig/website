@@ -105,12 +105,12 @@ code {
 }
 
 .codehilite {
-    font-family: var(--font-family-code);
     overflow: auto;
 }
 
 .codehilite pre {
     margin: var(--padding-default);
+    font-family: var(--font-family-code);
 }
 
 .codehilite .hll { background-color: #ffffcc }
