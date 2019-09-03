@@ -6,7 +6,6 @@
 }
 
 .post-title {
-    margin-block-start: 1em;
     margin-block-end: 0.5em;
 }
 
@@ -18,10 +17,6 @@
 .post-description {
     margin-block-start: 0.5em;
     margin-block-end: 1em;
-}
-
-.post-content p {
-    text-align: justify;
 }
 
 .post-content figure {
