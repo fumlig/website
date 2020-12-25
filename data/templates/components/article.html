@@ -1,0 +1,26 @@
+$-- single Pandoc document
+<article>
+    <header>
+        <h1>$title$$if(subtitle)$ - $subtitle$$endif$</h1>
+        <p>$author$</p>
+        <time datetime="$date$">$date$</time>
+        $if(abstract)$
+        <p>$abstract$</p>
+        $endif$
+    </header>
+
+    $if(toc)$
+    <nav>
+        $if$(toc-title)$
+        <h2>$toc-title$</h2>
+        $endif$
+        $table-of-contents$
+    </nav>
+    $endif$
+
+    $body$
+    
+    <footer>
+        
+    </footer>
+</article>
