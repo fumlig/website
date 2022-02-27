@@ -3,7 +3,6 @@
 }
 
 .input_prompt,
-.output_prompt, 
-.output_execute_result {
+.output_prompt {
     display: none;
 }
