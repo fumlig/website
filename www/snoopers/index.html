@@ -7,28 +7,37 @@
 		<meta name="description" content="Oskar Lundin's website.">
 		<meta name="author" content="Oskar Lundin">
 
-		<title>oskarlundin.com</title>
+        <title>snoopers - www.oskarlundin.com</title>
 
         <link rel="stylesheet" href="/style.css">
         <link rel="stylesheet" href="/syntax.css">
         <link rel="stylesheet" href="/notebook.css">
-    </head>
+	</head>
 
 	<body>
 		<header>
-			<h1><a href="/">oskarlundin.com</a></h1>
-			<nav><ul>
-				<li><a href="https://git.oskarlundin.com/oskar">projects</a></li>
-				<li><a href="https://git.oskarlundin.com/oskar/resume/raw/branch/master/resume.pdf">resume</a></li>
-			</ul></nav>
+			<a href="/"><b>oskarlundin.com</b></a>
+            <nav>
+			    <ul>
+				    <li><a href="https://git.oskarlundin.com/oskar">projects</a></li>
+				    <li><a href="https://git.oskarlundin.com/oskar/resume/raw/branch/master/resume.pdf">resume</a></li>
+			    </ul>
+            </nav>
 		</header>
 
-        <article>
+		<article>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Unwanted-Attention">Unwanted Attention<a class="anchor-link" href="#Unwanted-Attention">&#182;</a></h1>
-<date datetime="2022-02-27">2022-02-27</date>
+<h1 id="SSH-Snoopers-Around-the-World">SSH Snoopers Around the World<a class="anchor-link" href="#SSH-Snoopers-Around-the-World">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2022-02-27</p>
+
 </div>
 </div>
 </div>
@@ -52,7 +61,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>My server is accessible on my local network as oskar-server. It runs OpenSSH whose server daemon, called sshd, is managed with systemd. Its logs can be collected with <code>journalctl</code>.</p>
+<p>My server is accessible on my local network as oskar-server. It runs OpenSSH, whose server daemon sshd is managed with systemd. Its logs can be collected with <code>journalctl</code>.</p>
 
 </div>
 </div>
@@ -191,58 +200,58 @@
     }
 </style>
 <table border="1" class="dataframe">
-    <thead>
+  <thead>
     <tr style="text-align: right;">
-        <th></th>
-        <th>datetime</th>
-        <th>hostname</th>
-        <th>user</th>
-        <th>addr</th>
-        <th>port</th>
+      <th></th>
+      <th>datetime</th>
+      <th>hostname</th>
+      <th>user</th>
+      <th>addr</th>
+      <th>port</th>
     </tr>
-    </thead>
-    <tbody>
+  </thead>
+  <tbody>
     <tr>
-        <th>0</th>
-        <td>2021-04-08 21:10:41+02:00</td>
-        <td>oskar-server</td>
-        <td>simon</td>
-        <td>[redacted ip]</td>
-        <td>39058</td>
-    </tr>
-    <tr>
-        <th>1</th>
-        <td>2021-04-08 21:29:49+02:00</td>
-        <td>oskar-server</td>
-        <td>azman</td>
-        <td>[redacted ip]</td>
-        <td>39844</td>
+      <th>0</th>
+      <td>2021-04-08 21:10:41+02:00</td>
+      <td>oskar-server</td>
+      <td>simon</td>
+      <td>[redacted ip]</td>
+      <td>39058</td>
     </tr>
     <tr>
-        <th>2</th>
-        <td>2021-04-08 21:32:33+02:00</td>
-        <td>oskar-server</td>
-        <td>carl</td>
-        <td>[redacted ip]</td>
-        <td>48146</td>
+      <th>1</th>
+      <td>2021-04-08 21:29:49+02:00</td>
+      <td>oskar-server</td>
+      <td>azman</td>
+      <td>[redacted ip]</td>
+      <td>39844</td>
     </tr>
     <tr>
-        <th>3</th>
-        <td>2021-04-08 21:45:10+02:00</td>
-        <td>oskar-server</td>
-        <td>admin</td>
-        <td>[redacted ip]</td>
-        <td>55654</td>
+      <th>2</th>
+      <td>2021-04-08 21:32:33+02:00</td>
+      <td>oskar-server</td>
+      <td>carl</td>
+      <td>[redacted ip]</td>
+      <td>48146</td>
     </tr>
     <tr>
-        <th>4</th>
-        <td>2021-04-08 21:45:22+02:00</td>
-        <td>oskar-server</td>
-        <td>support</td>
-        <td>[redacted ip]</td>
-        <td>59528</td>
+      <th>3</th>
+      <td>2021-04-08 21:45:10+02:00</td>
+      <td>oskar-server</td>
+      <td>admin</td>
+      <td>[redacted ip]</td>
+      <td>55654</td>
     </tr>
-    </tbody>
+    <tr>
+      <th>4</th>
+      <td>2021-04-08 21:45:22+02:00</td>
+      <td>oskar-server</td>
+      <td>support</td>
+      <td>[redacted ip]</td>
+      <td>59528</td>
+    </tr>
+  </tbody>
 </table>
 </div></div>
 
@@ -378,64 +387,64 @@
     }
 </style>
 <table border="1" class="dataframe">
-    <thead>
+  <thead>
     <tr style="text-align: right;">
-        <th></th>
-        <th>ip</th>
-        <th>country</th>
-        <th>continent</th>
-        <th>subdivisions</th>
-        <th>timezone</th>
-        <th>location</th>
+      <th></th>
+      <th>ip</th>
+      <th>country</th>
+      <th>continent</th>
+      <th>subdivisions</th>
+      <th>timezone</th>
+      <th>location</th>
     </tr>
-    </thead>
-    <tbody>
+  </thead>
+  <tbody>
     <tr>
-        <th>0</th>
-        <td>[redacted ip]</td>
-        <td>GB</td>
-        <td>EU</td>
-        <td>()</td>
-        <td>Europe/London</td>
-        <td>(51.5, -0.13)</td>
-    </tr>
-    <tr>
-        <th>1</th>
-        <td>[redacted ip]</td>
-        <td>CN</td>
-        <td>AS</td>
-        <td>(11)</td>
-        <td>Asia/Shanghai</td>
-        <td>(39.9289, 116.3883)</td>
+      <th>0</th>
+      <td>[redacted ip]</td>
+      <td>GB</td>
+      <td>EU</td>
+      <td>()</td>
+      <td>Europe/London</td>
+      <td>(51.5, -0.13)</td>
     </tr>
     <tr>
-        <th>2</th>
-        <td>[redacted ip]</td>
-        <td>VN</td>
-        <td>AS</td>
-        <td>(64)</td>
-        <td>Asia/Ho_Chi_Minh</td>
-        <td>(21.0333, 105.85)</td>
+      <th>1</th>
+      <td>[redacted ip]</td>
+      <td>CN</td>
+      <td>AS</td>
+      <td>(11)</td>
+      <td>Asia/Shanghai</td>
+      <td>(39.9289, 116.3883)</td>
     </tr>
     <tr>
-        <th>3</th>
-        <td>[redacted ip]</td>
-        <td>VN</td>
-        <td>AS</td>
-        <td>(64)</td>
-        <td>Asia/Ho_Chi_Minh</td>
-        <td>(21.0333, 105.85)</td>
+      <th>2</th>
+      <td>[redacted ip]</td>
+      <td>VN</td>
+      <td>AS</td>
+      <td>(64)</td>
+      <td>Asia/Ho_Chi_Minh</td>
+      <td>(21.0333, 105.85)</td>
     </tr>
     <tr>
-        <th>4</th>
-        <td>[redacted ip]</td>
-        <td>VN</td>
-        <td>AS</td>
-        <td>(64)</td>
-        <td>Asia/Ho_Chi_Minh</td>
-        <td>(21.0333, 105.85)</td>
+      <th>3</th>
+      <td>[redacted ip]</td>
+      <td>VN</td>
+      <td>AS</td>
+      <td>(64)</td>
+      <td>Asia/Ho_Chi_Minh</td>
+      <td>(21.0333, 105.85)</td>
     </tr>
-    </tbody>
+    <tr>
+      <th>4</th>
+      <td>[redacted ip]</td>
+      <td>VN</td>
+      <td>AS</td>
+      <td>(64)</td>
+      <td>Asia/Ho_Chi_Minh</td>
+      <td>(21.0333, 105.85)</td>
+    </tr>
+  </tbody>
 </table>
 </div></div>
 
@@ -542,7 +551,7 @@
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.colorbar.Colorbar at 0x7fe1ae3a7f40&gt;</pre>
+<pre>&lt;matplotlib.colorbar.Colorbar at 0x7f7f4a9977c0&gt;</pre>
 </div>
 
 </div>
@@ -612,7 +621,7 @@
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.colorbar.Colorbar at 0x7fe1a6b215d0&gt;</pre>
+<pre>&lt;matplotlib.colorbar.Colorbar at 0x7f7f435e8f40&gt;</pre>
 </div>
 
 </div>
@@ -666,6 +675,8 @@
 </div>
 </div>
 </div>
-		</article>
+ 
+
+</article>
 	</body>
 </html>

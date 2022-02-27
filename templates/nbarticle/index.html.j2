@@ -1,3 +1,5 @@
+{% set nb_title = nb.metadata.get('title', '') or resources['metadata']['name'] %}
+
 <!doctype html>
 
 <html lang="en">
@@ -7,9 +9,11 @@
 		<meta name="description" content="Oskar Lundin's website.">
 		<meta name="author" content="Oskar Lundin">
 
-		<title>oskarlundin.com</title>
+        <title>{{nb_title}} - www.oskarlundin.com</title>
 
         <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/syntax.css">
+        <link rel="stylesheet" href="/notebook.css">
 	</head>
 
 	<body>
@@ -24,12 +28,7 @@
 		</header>
 
 		<article>
-			<h1>Welcome</h1>
-			<p>This website is under construction. There is really no reason to be here at the moment...</p>
-            <p>I will use this website to write about things that interest me.</p>
-            <ul>
-                <li><a href="/snoopers">SSH Snoopers Around the World</a> (<time pubdate datetime="2022-02-27">2022-02-27</time>)</li>
-            </ul>
+            {%- include 'basic/index.html.j2' -%}
         </article>
 	</body>
 </html>
