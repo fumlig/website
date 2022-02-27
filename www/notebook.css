@@ -1,0 +1,9 @@
+.anchor-link {
+    display: none;
+}
+
+.input_prompt,
+.output_prompt, 
+.output_execute_result {
+    display: none;
+}

@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 1em;
+    margin: auto;
+    max-width: 80ch;
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+pre {
+    background-color: #f1f1f1;
+    /*overflow-x: auto;*/
+    overflow-y: hidden;
+}
+
+img {
+    display: block;
+    margin: auto;
+}
+
+article {
+    border-top: 1px solid #000;
+}
