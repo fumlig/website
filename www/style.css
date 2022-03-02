@@ -10,11 +10,11 @@ table {
 }
 
 th {
-    padding: 1px;
+    padding: 3px;
 }
 
 pre {
-    background-color: #f1f1f1;
+    background-color: whitesmoke;
     overflow-y: hidden;
 }
 
@@ -25,4 +25,8 @@ img {
 
 article {
     hyphens: auto;
+}
+
+a {
+    color: navy;
 }
