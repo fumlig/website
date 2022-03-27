@@ -1,5 +1,6 @@
 ---
 title: Welcome
+toc: false
 ...
 
 This website is under construction. There is really no reason to be here at the moment...
