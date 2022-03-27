@@ -5,17 +5,14 @@ body {
 }
 
 table {
+    border: thin;
     border-collapse: collapse;
     margin: auto;
-}
-
-th {
-    padding: 3px;
+    padding: 1em;
 }
 
 pre {
-    background-color: whitesmoke;
-    overflow-y: hidden;
+    overflow: auto;
 }
 
 img {

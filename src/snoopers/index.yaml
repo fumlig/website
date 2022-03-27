@@ -1,0 +1,11 @@
+---
+title: SSH Snoopers Around the World
+date: 2022-02-27
+author: Oskar Lundin
+abstract: |
+  I run this website on a cheap machine from my home. It has been live on and off since around April 2021. I use SSH to administrate the machine and have opened the SSH port to the public.
+
+  Being able to access the machine from everywhere is extremely convenient, but it also brings some unwanted attention. I tend to get many malicious connections from around the world every day. These are likely performed by some script that tries common usernames and passwords on all open SSH servers with hopes to get access to the server and some valuable information. There are many exposed SSH servers with guessable usernames and passwords, so it is likely not a fruitless pursuit.
+
+  In this article I thought I would take a closer look at the login attempts made to my exposed machine. I will redact all IP addresses for privacy purposes.
+...
