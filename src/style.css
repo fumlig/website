@@ -27,3 +27,7 @@ article {
 a {
     color: navy;
 }
+
+#toc-title {
+    font-weight: bold;
+}

@@ -7,26 +7,31 @@ www/sitemap.txt: $(html)
 www/%.html: src/%.md src/style.css src/templates/article.html
 	mkdir -p $(shell dirname $@)
 	pandoc \
+		--verbose \
 		--self-contained \
+		--table-of-contents \
+		--citeproc \
 		--data-dir=src \
 		--template=article \
 		--css=src/style.css \
+		--mathjax \
+		--resource-path=$(shell dirname $<) \
 		--output=$@ \
 		$<
 
-www/%.html: src/%.ipynb src/%.yaml src/style.css src/notebook.css src/templates/article.html
+www/%.html: src/%.ipynb src/%.yaml src/style.css src/templates/article.html
 	mkdir -p $(shell dirname $@)
 #	jupyter nbconvert --to notebook --inplace --execute $<
 	pandoc \
 		--verbose \
 		--self-contained \
 		--table-of-contents \
+		--citeproc \
 		--data-dir=src \
 		--template=article \
 		--css=src/style.css \
-		--css=src/notebook.css \
-		--highlight-style=src/syntax.theme \
 		--mathjax \
-		--output=$@ \
+		--resource-path=$(shell dirname $<) \
 		--metadata-file=$(word 2,$^) \
+		--output=$@ \
 		$<
