@@ -1,10 +1,9 @@
 <!doctype html>
-<html lang>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="generator" content="pandoc" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <meta name="author" content="Oskar Lundin" />
     <meta name="dcterms.date" content="2022-02-27" />
     <title>SSH Snoopers Around the World</title>
     <style type="text/css">body {
@@ -116,7 +115,6 @@ font-weight: bold;
 
 <header>
     <h1>SSH Snoopers Around the World</h1>
-    <p class="author">Oskar Lundin</p>
     <p class="date">2022-02-27</p>
     <p><p>I run this website on a cheap machine from my home. It has
 been live on and off since around April 2021. I use SSH to administrate
@@ -152,17 +150,19 @@ privacy purposes.</p></p>
     logs can be collected with <code>journalctl</code>.</p>
     </div>
     <div class="cell code" data-execution_count="32">
-    <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ssh oskar<span class="op">-</span>server journalctl <span class="op">--</span>unit sshd <span class="op">--</span>output short<span class="op">-</span>iso <span class="op">&gt;</span> sshd.log</span></code></pre></div>
+    <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>host<span class="op">=</span>oskar_server ssh $host journalctl <span class="op">--</span>unit sshd <span class="op">--</span>output short<span class="op">-</span>iso <span class="op">&gt;</span> sshd.log</span></code></pre></div>
     </div>
     <div class="cell markdown">
     <p>Let&#39;s have a look at some log entries.</p>
     </div>
-    <div class="cell code" data-execution_count="12">
-    <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>head <span class="op">-</span>n <span class="dv">3</span> sshd.log</span></code></pre></div>
+    <div class="cell code" data-execution_count="24">
+    <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>head <span class="op">-</span>n <span class="dv">5</span> sshd.log <span class="op">|</span> sed <span class="op">-</span>E <span class="st">&#39;s/[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/&lt;REDACTED IP&gt;/g&#39;</span></span></code></pre></div>
     <div class="output stream stdout">
-    <pre><code>2021-04-08T21:10:41+0200 oskar-server sshd[315705]: Invalid user simon from 51.79.164.156 port 39058
-2021-04-08T21:10:42+0200 oskar-server sshd[315705]: Received disconnect from 51.79.164.156 port 39058:11: Bye Bye [preauth]
-2021-04-08T21:10:42+0200 oskar-server sshd[315705]: Disconnected from invalid user simon 51.79.164.156 port 39058 [preauth]
+    <pre><code>2021-04-08T21:10:41+0200 oskar-server sshd[315705]: Invalid user simon from &lt;REDACTED IP&gt; port 39058
+2021-04-08T21:10:42+0200 oskar-server sshd[315705]: Received disconnect from &lt;REDACTED IP&gt; port 39058:11: Bye Bye [preauth]
+2021-04-08T21:10:42+0200 oskar-server sshd[315705]: Disconnected from invalid user simon &lt;REDACTED IP&gt; port 39058 [preauth]
+2021-04-08T21:11:27+0200 oskar-server sshd[315711]: Received disconnect from &lt;REDACTED IP&gt; port 42434:11: Bye Bye [preauth]
+2021-04-08T21:11:27+0200 oskar-server sshd[315711]: Disconnected from authenticating user root &lt;REDACTED IP&gt; port 42434 [preauth]
 </code></pre>
     </div>
     </div>
@@ -172,7 +172,7 @@ privacy purposes.</p></p>
     collect all log entries for failed attempts with a regular
     expression.</p>
     </div>
-    <div class="cell code" data-execution_count="3">
+    <div class="cell code" data-execution_count="26">
     <div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime <span class="im">as</span> dt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -189,12 +189,12 @@ privacy purposes.</p></p>
     <div class="cell markdown">
     <p>Let&#39;s store the attempts in a dataframe for convenience.</p>
     </div>
-    <div class="cell code" data-execution_count="4">
+    <div class="cell code" data-execution_count="40">
     <div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df_ssh <span class="op">=</span> pd.DataFrame(ssh)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df_ssh.head()</span></code></pre></div>
-    <div class="output execute_result" data-execution_count="4">
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df_ssh.head().replace(<span class="vs">r&quot;[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+&quot;</span>, <span class="st">&quot;&lt;REDACTED IP&gt;&quot;</span>, regex<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+    <div class="output execute_result" data-execution_count="40">
     <div>
     <style scoped>
         .dataframe tbody tr th:only-of-type {
@@ -226,7 +226,7 @@ privacy purposes.</p></p>
           <td>2021-04-08 21:10:41+02:00</td>
           <td>oskar-server</td>
           <td>simon</td>
-          <td>51.79.164.156</td>
+          <td>&lt;REDACTED IP&gt;</td>
           <td>39058</td>
         </tr>
         <tr>
@@ -234,7 +234,7 @@ privacy purposes.</p></p>
           <td>2021-04-08 21:29:49+02:00</td>
           <td>oskar-server</td>
           <td>azman</td>
-          <td>103.109.152.210</td>
+          <td>&lt;REDACTED IP&gt;</td>
           <td>39844</td>
         </tr>
         <tr>
@@ -242,7 +242,7 @@ privacy purposes.</p></p>
           <td>2021-04-08 21:32:33+02:00</td>
           <td>oskar-server</td>
           <td>carl</td>
-          <td>124.193.83.246</td>
+          <td>&lt;REDACTED IP&gt;</td>
           <td>48146</td>
         </tr>
         <tr>
@@ -250,7 +250,7 @@ privacy purposes.</p></p>
           <td>2021-04-08 21:45:10+02:00</td>
           <td>oskar-server</td>
           <td>admin</td>
-          <td>171.251.19.3</td>
+          <td>&lt;REDACTED IP&gt;</td>
           <td>55654</td>
         </tr>
         <tr>
@@ -258,7 +258,7 @@ privacy purposes.</p></p>
           <td>2021-04-08 21:45:22+02:00</td>
           <td>oskar-server</td>
           <td>support</td>
-          <td>116.110.55.43</td>
+          <td>&lt;REDACTED IP&gt;</td>
           <td>59528</td>
         </tr>
       </tbody>
@@ -299,7 +299,7 @@ privacy purposes.</p></p>
     has a nice Python API. Let&#39;s see from where the SSH login attempts
     are made.</p>
     </div>
-    <div class="cell code" data-execution_count="10">
+    <div class="cell code" data-execution_count="57">
     <div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> geoip <span class="im">import</span> geolite2</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ips <span class="op">=</span> []</span>
@@ -311,7 +311,7 @@ privacy purposes.</p></p>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>df_ip <span class="op">=</span> pd.DataFrame(ips)</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>df_ip.head()</span></code></pre></div>
-    <div class="output execute_result" data-execution_count="10">
+    <div class="output execute_result" data-execution_count="57">
     <div>
     <style scoped>
         .dataframe tbody tr th:only-of-type {

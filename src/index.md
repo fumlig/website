@@ -12,6 +12,5 @@ I will use this website to write about things that interest me.
   - [papergcn](https://git.oskarlundin.com/oskar/papergcn): Classification of scientific papers with graph convolutional networks.
   - [sigmazero](https://git.oskarlundin.com/oskar/sigmazero): Implementation of the AlphaZero algorithm with distributed training.
 - articles
-  - [Generating Legal Chess Moves with Bitboards](/bitboards) (2022-03-27)
   - [SSH Snoopers Around the World](/snoopers) (2022-02-27)
 - [resume](https://git.oskarlundin.com/oskar/resume/raw/branch/master/resume.pdf)

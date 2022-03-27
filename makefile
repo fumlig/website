@@ -18,6 +18,7 @@ www/%.html: src/%.ipynb src/%.yaml src/style.css src/notebook.css src/templates/
 	mkdir -p $(shell dirname $@)
 #	jupyter nbconvert --to notebook --inplace --execute $<
 	pandoc \
+		--verbose \
 		--self-contained \
 		--table-of-contents \
 		--data-dir=src \
@@ -26,6 +27,6 @@ www/%.html: src/%.ipynb src/%.yaml src/style.css src/notebook.css src/templates/
 		--css=src/notebook.css \
 		--highlight-style=src/syntax.theme \
 		--mathjax \
-		--metadata-file=$(word 2,$^) \
 		--output=$@ \
+		--metadata-file=$(word 2,$^) \
 		$<
