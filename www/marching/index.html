@@ -4,9 +4,10 @@
     <meta charset="utf-8" />
     <meta name="generator" content="pandoc" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="dcterms.date" content="2022-03-27" />
     <meta name="keywords" content="C, C++, marching cubes, computer
 graphics" />
-    <title>Marching Cubes</title>
+    <title>Isosurfaces with Marching Cubes</title>
     <style type="text/css">body {
 margin: 0 auto;
 padding: 1em;
@@ -33,7 +34,8 @@ color: navy;
 }
 #toc-title {
 font-weight: bold;
-}</style>
+}
+</style>
 
 
 <style>
@@ -114,13 +116,27 @@ font-weight: bold;
 <article>
 
 <header>
-    <h1>Marching Cubes</h1>
+    <h1>Isosurfaces with Marching Cubes</h1>
+    <p class="date">2022-03-27</p>
     <p><p>Polygonising a Scalar Field.</p></p>
 </header>
 
+    <nav id="toc" role="doc-toc">
+        <p id="toc-title">Contents</p>
+    <ul>
+    <li><a href="#structure-definitions">Structure Definitions</a></li>
+    </ul>
+    </nav>
 
     <p>Marching cubes <span class="citation" data-cites="lorensen1987marching">(Lorensen and Cline
     1987)</span>.</p>
+    <ul>
+    <li><p>https://en.wikipedia.org/wiki/Isosurface</p></li>
+    <li><p>https://en.wikipedia.org/wiki/Implicit_surface</p></li>
+    <li><p>https://developer.nvidia.com/gpugems/gpugems3/part-i-geometry/chapter-1-generating-complex-procedural-terrains-using-gpu</p></li>
+    <li><p>https://en.wikipedia.org/wiki/Function_representation</p></li>
+    </ul>
+    <h2 id="structure-definitions">Structure Definitions</h2>
     <div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> vec3</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> x<span class="op">;</span></span>
@@ -139,15 +155,16 @@ font-weight: bold;
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> vertex<span class="op">*</span> vertices<span class="op">;</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span><span class="op">*</span> indices<span class="op">;</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
-    <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> march<span class="op">(</span><span class="dt">float</span><span class="op">*</span> rho<span class="op">,</span> <span class="kw">struct</span> mesh<span class="op">*</span> mesh<span class="op">)</span></span>
+    <p>This is the function we want to implement. Given a</p>
+    <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> march<span class="op">(</span><span class="dt">float</span><span class="op">*</span> w<span class="op">,</span> <span class="kw">struct</span> mesh<span class="op">*</span> mesh<span class="op">)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
     <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
     <div id="ref-lorensen1987marching" class="csl-entry" role="doc-biblioentry">
-    Lorensen, William E., and Harvey E. Cline. 1987. <span>“Marching
+    Lorensen, William E, and Harvey E Cline. 1987. <span>“Marching
     Cubes: A High Resolution 3d Surface Construction Algorithm.”</span>
-    <em>SIGGRAPH Comput. Graph.</em> 21 (4): 163–69. <a href="https://doi.org/10.1145/37402.37422">https://doi.org/10.1145/37402.37422</a>.
+    <em>ACM Siggraph Computer Graphics</em> 21 (4): 163–69.
     </div>
     </div>
 
