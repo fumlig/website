@@ -1,39 +1,45 @@
+index=www/index.html
+articles=www/snoopers/index.html www/marching/index.html www/sitegen/index.html
 
-html=www/index.html www/snoopers/index.html www/marching/index.html
+documents=$(index) $(articles)
+pages=$(patsubst %index.html,%,$(patsubst www/%.html,/%.html,$(documents)))
 domain=https://www.oskarlundin.com
-pages=$(patsubst %index.html,%,$(patsubst www/%.html,$(domain)/%.html,$(html)))
 
 
-all: $(html) www/sitemap.txt 
+all: $(documents) www/sitemap.txt 
 
 www/sitemap.txt: $(html)
-	printf "%s\n" $(pages) | sort > $@
+	printf "%s\n" $(patsubst %,$(domain)%,$(pages)) | sort > $@
 
-www/%.html: src/%.md src/style.css src/templates/article.html
+www/%.html: src/%.html
+	cp $< $@
+
+www/%.html: src/%.md src/style.css templates/article.html
 	mkdir -p $(shell dirname $@)
-	pandoc \
-		--verbose \
-		--self-contained \
-		--table-of-contents \
-		--citeproc \
-		--mathjax \
-		--data-dir=src \
+	pandoc --verbose --self-contained --table-of-contents --citeproc --mathjax \
+		--data-dir=. \
 		--template=article \
 		--css=src/style.css \
 		--resource-path=$(shell dirname $<) \
 		--output=$@ \
 		$<
 
-www/%.html: src/%.ipynb src/%.yaml src/style.css src/templates/article.html
+www/%.html: src/%.tex src/style.css templates/article.html
+	mkdir -p $(shell dirname $@)
+	pandoc --verbose --self-contained --table-of-contents --citeproc --mathjax \
+		--data-dir=. \
+		--template=article \
+		--css=src/style.css \
+		--resource-path=$(shell dirname $<) \
+		--lua-filter=tikz.lua \
+		--output=$@ \
+		$<
+
+www/%.html: src/%.ipynb src/%.yaml src/style.css templates/article.html
 	mkdir -p $(shell dirname $@)
 	$(if $(NB_EXECUTE),jupyter nbconvert --to notebook --inplace --execute $<)
-	pandoc \
-		--verbose \
-		--self-contained \
-		--table-of-contents \
-		--citeproc \
-		--mathjax \
-		--data-dir=src \
+	pandoc --verbose --self-contained --table-of-contents --citeproc --mathjax \
+		--data-dir=. \
 		--template=article \
 		--css=src/style.css \
 		--resource-path=$(shell dirname $<) \
@@ -43,4 +49,4 @@ www/%.html: src/%.ipynb src/%.yaml src/style.css src/templates/article.html
 
 .PHONY: clean
 clean:
-	rm $(html)
+	rm $(documents)
