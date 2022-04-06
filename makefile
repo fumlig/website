@@ -1,12 +1,9 @@
-index=www/index.html
-articles=www/snoopers/index.html www/marching/index.html www/sitegen/index.html
-
-documents=$(index) $(articles)
-pages=$(patsubst %index.html,%,$(patsubst www/%.html,/%.html,$(documents)))
+files=www/index.html www/snoopers/index.html www/marching/index.html www/sitegen/index.html
+pages=$(patsubst %index.html,%,$(patsubst www/%.html,/%.html,$(files)))
 domain=https://www.oskarlundin.com
 
 
-all: $(documents) www/sitemap.txt 
+all: $(files) www/sitemap.txt 
 
 www/sitemap.txt: $(html)
 	printf "%s\n" $(patsubst %,$(domain)%,$(pages)) | sort > $@
@@ -49,4 +46,4 @@ www/%.html: src/%.ipynb src/%.yaml src/style.css templates/article.html
 
 .PHONY: clean
 clean:
-	rm $(documents)
+	rm $(files)
