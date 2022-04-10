@@ -1,9 +1,6 @@
-files=www/index.html www/snoopers/index.html www/marching/index.html www/sitegen/index.html
+files=www/index.html www/example.html www/snoopers/index.html www/marching/index.html www/sitegen/index.html
 pages=$(patsubst %index.html,%,$(patsubst www/%.html,/%.html,$(files)))
-
 domain=https://www.oskarlundin.com
-user=oskar
-host=oskar-server
 
 
 .PHONY: all clean serve
@@ -26,34 +23,34 @@ www/sitemap.txt: $(html)
 www/%.html: src/%.html
 	cp $< $@
 
-www/%.html: src/%.md src/style.css templates/article.html
+www/%.html: src/%.md styles/article.css templates/article.html
 	mkdir -p $(shell dirname $@)
-	pandoc --verbose --self-contained --table-of-contents --citeproc --mathjax \
+	pandoc --verbose --self-contained --table-of-contents --section-divs --citeproc --mathjax \
 		--data-dir=. \
 		--template=article \
-		--css=src/style.css \
+		--css=styles/article.css \
 		--resource-path=$(shell dirname $<) \
 		--output=$@ \
 		$<
 
-www/%.html: src/%.tex src/style.css templates/article.html
-	mkdir -p $(shell dirname $@)
-	pandoc --verbose --self-contained --table-of-contents --citeproc --mathjax \
+www/%.html: src/%.tex styles/article.css templates/article.html
+	mkdir -p $(shell dirname $e@)
+	pandoc --verbose --self-contained --table-of-contents --section-divs --citeproc --mathjax \
 		--data-dir=. \
 		--template=article \
-		--css=src/style.css \
+		--css=$(style) \
 		--resource-path=$(shell dirname $<) \
 		--lua-filter=tikz.lua \
 		--output=$@ \
 		$<
 
-www/%.html: src/%.ipynb src/%.yaml src/style.css templates/article.html
+www/%.html: src/%.ipynb src/%.yaml styles/article.css templates/article.html
 	mkdir -p $(shell dirname $@)
 	$(if $(NB_EXECUTE),jupyter nbconvert --to notebook --inplace --execute $<)
-	pandoc --verbose --self-contained --table-of-contents --citeproc --mathjax \
+	pandoc --verbose --self-contained --table-of-contents --section-divs --citeproc --mathjax \
 		--data-dir=. \
 		--template=article \
-		--css=src/style.css \
+		--css=styles/article.css \
 		--resource-path=$(shell dirname $<) \
 		--metadata-file=$(word 2,$^) \
 		--output=$@ \
