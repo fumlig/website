@@ -1,21 +1,21 @@
-files=www/index.html www/example.html www/snoopers/index.html www/marching/index.html www/sitegen/index.html
+files=www/index.html www/snoopers/index.html www/marching/index.html www/sitegen/index.html
 pages=$(patsubst %index.html,%,$(patsubst www/%.html,/%.html,$(files)))
-domain=https://www.oskarlundin.com
+
+domain=https://www.fumlig.se/~oskar
 
 
-.PHONY: all clean serve
+.PHONY: all clean serve publish
 
 all: $(files) www/sitemap.txt 
 
 clean:
-	rm $(files)
+	rm $(files) www/sitemap.txt
 
 serve:
 	python3 -m http.server --directory www
 
 publish:
-	scp -r www/* oskar@oskar-server:/srv/http/www.oskarlundin.com
-	ssh -t oskar@oskar-server sudo chown -R http:http /srv/http/www.oskarlundin.com
+	scp -r www/* oskar@oskar-server:public
 
 www/sitemap.txt: $(html)
 	printf "%s\n" $(patsubst %,$(domain)%,$(pages)) | sort > $@
